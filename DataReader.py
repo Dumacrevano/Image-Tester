@@ -94,60 +94,48 @@ while trial_num < trials:
     filename = potential_candidate["Name"] + potential_candidate["Type"]
     try:
         # set formats list
-        file_formats = ["png", "jpg", "pgm"]
+        file_formats = ["png", "gif", "jpg", "bmp", "webp", "ico", "pgm"]
         # print("python " + program_name + " " + "\"" + filename + "\" " + "jpg")
 
         # check current format and update file formats
         if(potential_candidate["Type"] == ".png"):
-
             cur_format = file_formats.pop(0)
-        elif(potential_candidate["Type"] == ".jpg"):
+
+        elif(potential_candidate["Type"] == ".gif"):
             cur_format = file_formats.pop(1)
 
-        else:
+        elif(potential_candidate["Type"] == ".jpg"):
             cur_format = file_formats.pop(2)
 
-        # convert the file to the two other formats
-        os.system("python " + program_name + " " + "\"" + filename + "\" " + file_formats[0])
-        output_filename1 = filename.replace(cur_format, file_formats[0])
-        os.system("python " + program_name + " " + "\"" + filename + "\" " + file_formats[1])
-        output_filename2 = filename.replace(cur_format, file_formats[1])
+        elif(potential_candidate["Type"] == ".bmp"):
+            cur_format = file_formats.pop(3)
 
-        # open first file and check format
-        img = Image.open(output_filename1)
-        result_format = img.format
-        print("Output file 1 format is: " + result_format)
-        del img
+        elif(potential_candidate["Type"] == ".webp"):
+            cur_format = file_formats.pop(4)
 
-        # move file 1 to results folder
-        os.rename(output_filename1, output_filename1.replace("Testpool", resultfolder))
+        elif(potential_candidate["Type"] == ".ico"):
+            cur_format = file_formats.pop(5)
 
-        if (result_format.lower() == "jpeg"):
-            result_format = "jpg"
+        elif(potential_candidate["Type"] == ".pgm"):
+            cur_format = file_formats.pop(6)
 
-        if (result_format.lower() == "ppm"):
-            result_format = "pgm"
+        # convert the file to the other formats
+        for i in range(len(file_formats)):
+            os.system("python " + program_name + " " + "\"" + filename + "\" " + file_formats[i])
+            output_filename = filename.replace(cur_format, file_formats[i])
+            img = Image.open(output_filename)
+            result_format = img.format
+            print("Output file "+ str(i) + " format is: " + result_format)
+            del img
 
-        if (result_format.lower() != file_formats[0]):
-            sample_errors.append(filename)
+            # move file to results folder
+            os.rename(output_filename, output_filename.replace("Testpool", resultfolder))
 
-        # open file 2 and check format
-        img = Image.open(output_filename2)
-        result_format = img.format
-        print("Output file 2 format is: " + result_format)
-        del img
+            if (result_format.lower() == "jpeg"):
+               result_format = "jpg"
 
-        # move file 2 to results folder
-        os.rename(output_filename2, output_filename2.replace("Testpool", resultfolder))
-
-        if (result_format.lower() == "jpeg"):
-            result_format = "jpg"
-
-        if (result_format.lower() == "ppm"):
-            result_format = "pgm"
-
-        if (result_format.lower() != file_formats[1]):
-            sample_errors.append(filename)
+            if (result_format.lower() != file_formats[1]):
+                sample_errors.append(filename)
 
     except Exception as e:
         print(e)
