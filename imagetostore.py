@@ -103,7 +103,7 @@ def imagetostore(filename,images,directory):
         r, g, b = 125, 125, 125
         bit_depth = 8
     size = size_val(images)
-    sig = signature_decimal(images, extension)
+    sig = round(signature_decimal(images, extension), 8)
     file = open(filename, "a")
     file.write("\n"+str(name)+","+str(r)+","+str(g)+","+str(b)+","+extension+","+str(dimension)+","+str(bit_depth)+","+str(size)+","+str(sig))
     file.close()
@@ -128,9 +128,9 @@ def store_to_files(directory,filetosave):
     filenames.sort(key=lambda x: int(''.join(filter(str.isdigit, x))))
     file = open(filetosave, "r+")
     print(file.readline())
-    if os.path.getsize(filetosave) != 0:
-        file.truncate(0)
-        file.write("0")
+    # if os.path.getsize(filetosave) != 0:
+    #     file.truncate(0)
+    #     file.write("0")
 
 
 

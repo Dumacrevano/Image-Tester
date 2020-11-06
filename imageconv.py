@@ -13,6 +13,7 @@ else:
 	file_format = "jpg"
 img = Image.open(file)
 image_format = img.format.lower()
+
 # print(image_format)
 # print(file.replace(image_format.lower(), file_format.lower()))
 if image_format.lower() == "jpeg":
@@ -21,14 +22,14 @@ elif image_format.lower() == "ppm":
 	image_format = "pgm"
 try:
 	if(image_format.lower() == "pgm"):
-		img.save(file.replace(image_format.lower(), file_format.lower()))
+		img.save(file.lower().replace(image_format.lower(), file_format.lower()))
 
 	elif img.mode != 'RGB':
 		rgb_img = img.convert('RGB')
-		rgb_img.save(file.replace(image_format.lower(), file_format.lower()))
+		rgb_img.save(file.lower().replace(image_format.lower(), file_format.lower()))
 
 	else:
-		img.save(file.replace(image_format.lower(), file_format.lower()))
+		img.save(file.lower().replace(image_format.lower(), file_format.lower()))
 
 except Exception as e:
 	print(e)

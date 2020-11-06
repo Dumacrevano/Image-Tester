@@ -18,7 +18,7 @@ for i in data:
     else:
         length = int(i)
     x += 1
-
+inp.close()
 # initialize variables
 tested_pictures = []
 trials = 10
@@ -98,45 +98,47 @@ while trial_num < trials:
         # print("python " + program_name + " " + "\"" + filename + "\" " + "jpg")
 
         # check current format and update file formats
-        if(potential_candidate["Type"] == ".png"):
+        if(potential_candidate["Type"].lower() == ".png"):
             cur_format = file_formats.pop(0)
 
-        elif(potential_candidate["Type"] == ".gif"):
+        elif(potential_candidate["Type"].lower() == ".gif"):
             cur_format = file_formats.pop(1)
 
-        elif(potential_candidate["Type"] == ".jpg"):
+        elif(potential_candidate["Type"].lower() == ".jpg"):
             cur_format = file_formats.pop(2)
 
-        elif(potential_candidate["Type"] == ".bmp"):
+        elif(potential_candidate["Type"].lower() == ".bmp"):
             cur_format = file_formats.pop(3)
 
-        elif(potential_candidate["Type"] == ".webp"):
+        elif(potential_candidate["Type"].lower() == ".webp"):
             cur_format = file_formats.pop(4)
 
-        elif(potential_candidate["Type"] == ".ico"):
+        elif(potential_candidate["Type"].lower() == ".ico"):
             cur_format = file_formats.pop(5)
 
-        elif(potential_candidate["Type"] == ".pgm"):
+        elif(potential_candidate["Type"].lower() == ".pgm"):
             cur_format = file_formats.pop(6)
 
         # convert the file to the other formats
         for i in range(len(file_formats)):
             os.system("python " + program_name + " " + "\"" + filename + "\" " + file_formats[i])
-            output_filename = filename.replace(cur_format, file_formats[i])
+            print("Current_Format", "python " + program_name + " " + "\"" + filename + "\" " + file_formats[i])
+            output_filename = filename.lower().replace(cur_format, file_formats[i])
             img = Image.open(output_filename)
             result_format = img.format
             print("Output file "+ str(i) + " format is: " + result_format)
             del img
 
             # move file to results folder
-            os.rename(output_filename, output_filename.replace("Testpool", resultfolder))
+            os.rename(output_filename, output_filename.replace("Data".lower(), resultfolder))  # !!!!! folder name should be LOWERED!!!!
 
             if (result_format.lower() == "jpeg"):
                result_format = "jpg"
 
-            if (result_format.lower() != file_formats[1]):
-                sample_errors.append(filename)
-
+            # if (result_format.lower() != file_formats[1]):
+            #     print("Result Format: ", result_format.lower(), "File_Format", file_formats[1])
+            #     # sample_errors.append(filename)
+            # IM gonna comment this out for now, seems to append non-error files
     except Exception as e:
         print(e)
         print("Error in trial:" + str(trial_num))
