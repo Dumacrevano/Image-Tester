@@ -128,11 +128,9 @@ def store_to_files(directory,filetosave):
     filenames.sort(key=lambda x: int(''.join(filter(str.isdigit, x))))
     file = open(filetosave, "r+")
     print(file.readline())
-    # if os.path.getsize(filetosave) != 0:
-    #     file.truncate(0)
-    #     file.write("0")
-
-
+    if os.path.getsize(filetosave) != 0:
+        file.truncate(0)
+        # file.write("0")
 
     for filename in filenames:
          path=os.path.join(directory, filename)

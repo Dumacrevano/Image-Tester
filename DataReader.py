@@ -3,6 +3,8 @@ import math
 import DistanceCalc
 import numpy
 from PIL import Image
+import shutil
+
 
 
 with open("testpool.txt") as inp:
@@ -31,6 +33,9 @@ program_name = "imageconv.py"
 resultfolder = "results"
 
 # check if results folder exists
+if os.path.exists(resultfolder):
+    #delete folder contents if exists
+    shutil.rmtree('results')
 if not os.path.exists(resultfolder):
     # create folder
     os.mkdir(resultfolder)
@@ -122,7 +127,6 @@ while trial_num < trials:
         # convert the file to the other formats
         for i in range(len(file_formats)):
             os.system("python " + program_name + " " + "\"" + filename + "\" " + file_formats[i])
-            print("Current_Format", "python " + program_name + " " + "\"" + filename + "\" " + file_formats[i])
             output_filename = filename.lower().replace(cur_format, file_formats[i])
             img = Image.open(output_filename)
             result_format = img.format
@@ -134,10 +138,9 @@ while trial_num < trials:
 
             if (result_format.lower() == "jpeg"):
                result_format = "jpg"
-
-            # if (result_format.lower() != file_formats[1]):
-            #     print("Result Format: ", result_format.lower(), "File_Format", file_formats[1])
-            #     # sample_errors.append(filename)
+            # if (result_format.lower() != file_formats[i]):
+            #     print(result_format.lower())
+            #     sample_errors.append(filename)
             # IM gonna comment this out for now, seems to append non-error files
     except Exception as e:
         print(e)
