@@ -21,8 +21,8 @@ def downloadimages(file_type,words,response,directory):
                 "keywords": random.choice(words['data']),
                 "output_directory": directory,
                 "format": file_type,
+                "limit":1,
                 "no_directory": True,
-                "limit": 50,
                 "print_urls": True,
                  }
     try:
@@ -33,9 +33,9 @@ def downloadimages(file_type,words,response,directory):
         arguments = {
                     "keywords": random.choice(words['data']),
                     "format": file_type,
-                    "output_directory": "Testpool",
+                    "limit": 1,
+                    "output_directory": directory,
                     "no_directory":True,
-                    "limit": 10,
                     "print_urls": True,
                 }
 
@@ -51,8 +51,7 @@ def downloadimages(file_type,words,response,directory):
 # Driver Code
 def start_download(testpool):
     testpool = testpool
-    if (os.path.exists(testpool)):
-        shutil.rmtree(testpool)
+
 
     corpus_link = "https://www.randomlists.com/data/words.json"
     response = urllib.request.urlopen(corpus_link)
@@ -73,7 +72,8 @@ def start_download(testpool):
         "ico"
     ]
 
-    for type in file_type:
-        downloadimages(type,words,response,testpool)
-        print()
+    type = file_type[random.randint(0, len(file_type)-1)]
+
+    downloadimages(type,words,response,testpool)
+    # print()
 
