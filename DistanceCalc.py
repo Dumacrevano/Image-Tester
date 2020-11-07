@@ -22,5 +22,8 @@ def feature_difference(Image1, Image2):
         largersize = Image1
     else:
         largersize = Image2
-    final_avg = difference/largersize * 100
+    try:
+        final_avg = difference/largersize * 100
+    except ZeroDivisionError:
+        final_avg = 0
     return final_avg
