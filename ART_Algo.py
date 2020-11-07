@@ -142,12 +142,11 @@ def ART_algo(filename,testpoolfolder):
                 #     # print(result_format.lower())
                 #     sample_errors.append(filename)
                 # IM gonna comment this out for now, seems to append non-error files
-        except PIL.UnidentifiedImageError:
-                sample_errors.append(filename)
         except FileExistsError:
             continue
-        except FileNotFoundError:
-            continue
+        except FileNotFoundError as e:
+            print(e)
+            sample_errors.append(filename)
         except Exception as e:  # catches other errors
             print(e)
             if os.path.isfile(output_filename):
