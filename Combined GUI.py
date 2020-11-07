@@ -19,11 +19,11 @@ class Tester_GUI:
         self.create_widget()
 
     def create_widget(self):
-        generate_button=tkinter.Button(self.root, text="generate Test Cases", width=20, command=self.imagedownload_page)
+        generate_button=tkinter.Button(self.root, text="Generate Test Cases", width=20, command=self.imagedownload_page)
         generate_button.grid(row=0,column=0,columnspan=3,pady=20,padx=((400-20)/2))
         create_test_file=tkinter.Button(self.root, text="Create Test File", width=20, command=self.create_test_file_page)
         create_test_file.grid(row=1,column=0,columnspan=3,pady=20,padx=((400-20)/2))
-        start_test=tkinter.Button(self.root, text="start testing", width=20, command=self.testing_page)
+        start_test=tkinter.Button(self.root, text="Start Testing", width=20, command=self.testing_page)
         start_test.grid(row=2, column=0, columnspan=3, pady=20, padx=((400 - 20) / 2))
         #self.select_button=tkinter.Button()
         self.root.mainloop()
@@ -37,46 +37,48 @@ class Tester_GUI:
         self.downloader_page.geometry("500x300")
         self.downloader_page.resizable(False, False)
         #widgetStarthere
-        tkinter.Label(self.downloader_page,text="Select your save location(default/testpool)").grid(row=0,column=0)
+        tkinter.Label(self.downloader_page,text="Directory(default/testpool)").grid(row=0,column=0)
         self.download_dir_bar = tkinter.Entry(self.downloader_page, width=55)
         self.download_dir_bar.grid(row=1, column=0, padx=4, pady=4)
-        self.browse_button = tkinter.Button(self.downloader_page, text="browse", width=20,
+        self.browse_button = tkinter.Button(self.downloader_page, text="Browse", width=20,
                                               command=self.browse_downloader_dir)
         self.browse_button.grid(row=1, column=1)
-        self.start_download_button=tkinter.Button(self.downloader_page, text="start", width=20,
+        self.start_download_button=tkinter.Button(self.downloader_page, text="Start", width=20,
                                               command=self.start_download)
 
         self.start_download_button.grid(row=2, column=0,pady=20,columnspan=2)
-        self.progress_var = tkinter.DoubleVar()
-        self.progressbar = ttk.Progressbar(self.downloader_page, variable=self.progress_var, maximum=9)
-        self.progressbar.grid(row=3, column=0,pady=20,columnspan=2)
+        self.progress_var_download_image = tkinter.DoubleVar()
+        self.maximum_store = 0
+        self.progressbar_download_image = ttk.Progressbar(self.downloader_page, length=500, variable=self.progress_var_download_image, maximum=51)
+        self.progressbar_download_image.grid(row=3, column=0,pady=20,columnspan=2)
 
     def create_test_file_page(self):
         self.create_test_file_page = tkinter.Toplevel(self.root)
         self.create_test_file_page.grab_set()
-        self.create_test_file_page.title("New Window")
+        self.create_test_file_page.title("Store Text To File")
         self.create_test_file_page.geometry("500x300")
         self.create_test_file_page.resizable(False, False)
         # widgetStarthere
-        tkinter.Label(self.create_test_file_page, text="create test file Menu").grid(row=0, column=0)
+        tkinter.Label(self.create_test_file_page, text="Create Test File Menu").grid(row=0, column=0)
         tkinter.Label(self.create_test_file_page, text="Images' Folder").grid(row=1, column=0,pady=4)
         self.test_image_folder_bar=tkinter.Entry(self.create_test_file_page, width=40)
         self.test_image_folder_bar.grid(row=1,column=1,pady=4)
-        self.test_image_folder_button=tkinter.Button(self.create_test_file_page,text="browse",width=15,command=self.browse_testfile_dir)
+        self.test_image_folder_button=tkinter.Button(self.create_test_file_page,text="Browse",width=15,command=self.browse_testfile_dir)
         self.test_image_folder_button.grid(row=1,column=2,padx=2,pady=4)
 
-
-
-        tkinter.Label(self.create_test_file_page, text="Text To store").grid(row=2, column=0)
+        tkinter.Label(self.create_test_file_page, text="Text To Store").grid(row=2, column=0)
         self.test_file_bar = tkinter.Entry(self.create_test_file_page, width=40)
         self.test_file_bar.grid(row=2, column=1, pady=4)
-        self.test_file_button = tkinter.Button(self.create_test_file_page, text="browse", width=15,
+        self.test_file_button = tkinter.Button(self.create_test_file_page, text="Browse", width=15,
                                                        command=self.browse_testfile)
         self.test_file_button.grid(row=2, column=2, padx=2, pady=4)
 
-        storing_button=tkinter.Button(self.create_test_file_page, text="store to txt", width=15,command=self.start_storing_to_txt)
+        storing_button=tkinter.Button(self.create_test_file_page, text="Store To .txt", width=15,command=self.start_storing_to_txt)
         storing_button.grid(row=3, column=0, pady=20 ,padx=((500-40)/4),columnspan=3)
 
+        self.progress_var_store_text = tkinter.DoubleVar()
+        self.progressbar_store_text  = ttk.Progressbar(self.create_test_file_page, length=500, variable=self.progress_var_store_text)
+        self.progressbar_store_text.grid(row=4, column=0, pady=20, columnspan=4)
 
 
     def testing_page(self):
@@ -94,25 +96,24 @@ class Tester_GUI:
             testpool = self.selected_download_folder
             if (os.path.exists(testpool)):
                 shutil.rmtree(testpool)
-            for i in range(10):
-                self.progress_var.set(i)
+            for i in range(1, 11):
+                ImgDownloader.start_download(self.selected_download_folder)
+                self.progress_var_download_image.set(i)
                 time.sleep(0.02)
                 self.root.update_idletasks()
-                ImgDownloader.start_download(self.selected_download_folder)
             AutomatedRename.rename_tool(self.selected_download_folder)
-        print("downloadstarted")
+        print("Download Started")
 
 
         # run thread 
         threading.Thread(target=thread).start()
 
     def start_storing_to_txt(self):
-        print("storing started")
+        print("Storing Started")
         
         # create thread function for storing
         def thread():
-            imagetostore.store_to_files(self.selected_test_image_folder,self.selected_textfile)
-        
+            imagetostore.store_to_files(self.selected_test_image_folder,self.selected_textfile, self.progress_var_store_text, self.progressbar_store_text,  self.root)
         # run thread
         threading.Thread(target=thread).start()
 
