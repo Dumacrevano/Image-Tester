@@ -9,7 +9,7 @@ import ImgDownloader
 import AutomatedRename
 import imagetostore
 import threading
-
+import time
 class Tester_GUI:
     def __init__(self):
         self.root = tkinter.Tk()
@@ -33,7 +33,7 @@ class Tester_GUI:
         #panel
         self.downloader_page = tkinter.Toplevel(self.root)
         self.downloader_page.grab_set()
-        self.downloader_page.title("New Window")
+        self.downloader_page.title("Download Image")
         self.downloader_page.geometry("500x300")
         self.downloader_page.resizable(False, False)
         #widgetStarthere
@@ -45,7 +45,11 @@ class Tester_GUI:
         self.browse_button.grid(row=1, column=1)
         self.start_download_button=tkinter.Button(self.downloader_page, text="start", width=20,
                                               command=self.start_download)
+
         self.start_download_button.grid(row=2, column=0,pady=20,columnspan=2)
+        self.progress_var = tkinter.DoubleVar()
+        self.progressbar = ttk.Progressbar(self.downloader_page, variable=self.progress_var, maximum=9)
+        self.progressbar.grid(row=3, column=0,pady=20,columnspan=2)
 
     def create_test_file_page(self):
         self.create_test_file_page = tkinter.Toplevel(self.root)
@@ -86,9 +90,15 @@ class Tester_GUI:
 
     def start_download(self):
         # create thread function for download
-
         def thread():
-            ImgDownloader.start_download(self.selected_download_folder)
+            testpool = self.selected_download_folder
+            if (os.path.exists(testpool)):
+                shutil.rmtree(testpool)
+            for i in range(10):
+                self.progress_var.set(i)
+                time.sleep(0.02)
+                self.root.update_idletasks()
+                ImgDownloader.start_download(self.selected_download_folder)
             AutomatedRename.rename_tool(self.selected_download_folder)
         print("downloadstarted")
 
