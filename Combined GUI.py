@@ -10,6 +10,9 @@ import AutomatedRename
 import imagetostore
 import threading
 import time
+import algo_comparison
+
+
 class Tester_GUI:
     def __init__(self):
         self.root = tkinter.Tk()
@@ -85,7 +88,7 @@ class Tester_GUI:
         self.testing_page = tkinter.Toplevel(self.root)
         self.testing_page.grab_set()
         self.testing_page.title("New Window")
-        self.testing_page.geometry("500x300")
+        self.testing_page.geometry("500x400")
         self.testing_page.resizable(False, False)
         # widgetStarthere
         tkinter.Label(self.testing_page, text="Testpool file:").grid(row=0, column=0, pady=2)
@@ -102,12 +105,15 @@ class Tester_GUI:
         self.testpoolFolder_browse_button = tkinter.Button(self.testing_page,text="browse",width=15,command=self.browse_testpool_dir)
         self.testpoolFolder_browse_button.grid(row=1,column=2,padx=2,pady=4)
 
+        tkinter.Label(self.testing_page, text="No of Trial:").grid(row=2,column=0,pady=2)
+        self.No_of_test_trial=tkinter.Entry(self.testing_page,width=10)
+        self.No_of_test_trial.grid(row=2,column=1,pady=2)
         self.test_page_report=ttk.Treeview(self.testing_page, selectmode ='browse')
-        self.test_page_report.grid(row=2,column=0,columnspan=3,pady=4,padx=40)
+        self.test_page_report.grid(row=3,column=0,columnspan=3,pady=4,padx=40)
         verscrlbar = ttk.Scrollbar(self.testing_page,
                                    orient="vertical",
                                    command=self.test_page_report.yview)
-        verscrlbar.grid(row=2,column=3)
+        verscrlbar.grid(row=3,column=3)
         self.test_page_report.configure(xscrollcommand=verscrlbar.set)
 
         self.test_page_report["columns"] = ("1", "2")
@@ -120,6 +126,9 @@ class Tester_GUI:
 
         self.test_page_report.heading("1", text="File")
         self.test_page_report.heading("2", text="Error Message")
+        start_testing_button=tkinter.Button(self.testing_page,text="start Testing",width=15,command=self.testing_function)
+        start_testing_button.grid(row=4,column=0,padx=2,pady=4,columnspan=4)
+
 
 
     def start_download(self):
@@ -139,7 +148,7 @@ class Tester_GUI:
 
         # run thread 
         threading.Thread(target=thread).start()
-
+    # storing to text
     def start_storing_to_txt(self):
         print("Storing Started")
         
@@ -148,6 +157,14 @@ class Tester_GUI:
             imagetostore.store_to_files(self.selected_test_image_folder,self.selected_textfile, self.progress_var_store_text, self.progressbar_store_text,  self.root)
         # run thread
         threading.Thread(target=thread).start()
+
+    def testing_function(self):
+        print("start testing")
+        def thread():
+            algo_comparison.algo_comparison(int(self.No_of_test_trial.get()),self.selected_testpool_txt,self.selected_testpool_folder)
+        threading.Thread(target=thread).start()
+
+
 
     # image generator browse function
     def browse_downloader_dir(self):
@@ -180,6 +197,7 @@ class Tester_GUI:
         print(self.selected_testpool_folder)
         self.testpoolFolder_input_bar.delete(0, "end")
         self.testpoolFolder_input_bar.insert(0, self.selected_testpool_folder)
+
 
 
 

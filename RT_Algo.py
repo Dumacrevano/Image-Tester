@@ -3,14 +3,14 @@ import math
 import DistanceCalc
 import numpy
 from PIL import Image
-import PIL
 import shutil
 from DataReader import *
+import PIL
 
 
-def RT_algo():
+def RT_algo(filename,testpoolfolder):
     # data pool creation
-    data_pool, length = datareader("testpool.txt")
+    data_pool, length = datareader(filename)
 
     # initialize variables
     trials = 10
@@ -77,11 +77,11 @@ def RT_algo():
                 output_filename = filename.lower().replace(cur_format, file_formats[i])
                 img = Image.open(output_filename)
                 result_format = img.format
-                # print("Output file "+ str(i) + " format is: " + result_format)
+                print("Output file "+ str(i) + " format is: " + result_format)
                 del img
 
                 # move file to results folder
-                os.rename(output_filename, output_filename.replace("Testpool".lower(), resultfolder))  # !!!!! folder name should be LOWERED!!!!
+                os.rename(output_filename, output_filename.replace(testpoolfolder.lower(), resultfolder))  # !!!!! folder name should be LOWERED!!!!
 
                 if (result_format.lower() == "jpeg"):
                    result_format = "jpg"
@@ -90,17 +90,19 @@ def RT_algo():
                 #     sample_errors.append(filename)
                 # IM gonna comment this out for now, seems to append non-error files
         except PIL.UnidentifiedImageError:
-            sample_errors.append(filename)
-        except FileNotFoundError:
-            continue
+                sample_errors.append(filename)
         except FileExistsError:
             continue
-        except Exception as e: #catches other errors
+        except FileNotFoundError:
+            continue
+        except Exception as e:  # catches other errors
             print(e)
             if os.path.isfile(output_filename):
-                os.rename(output_filename, output_filename.replace("Testpool".lower(), errorfolder))  #place error file into error folder            print("Error in trial:" + str(trial_num))
+                os.rename(output_filename, output_filename.replace(testpoolfolder.lower(),
+                                                                   errorfolder))  # place error file into error folder
+            print("Error in trial:" + str(trial_num))
             sample_errors.append(filename)
-            if(first_error == math.inf):
+            if (first_error == math.inf):
                 first_error = trial_num
 
         trial_num = trial_num + 1
