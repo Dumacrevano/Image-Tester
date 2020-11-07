@@ -8,6 +8,7 @@ from tkinter import ttk,filedialog
 import ImgDownloader
 import AutomatedRename
 import imagetostore
+import threading
 
 class Tester_GUI:
     def __init__(self):
@@ -84,13 +85,26 @@ class Tester_GUI:
         tkinter.Label(self.testing_page, text="coming soon").grid(row=0, column=0)
 
     def start_download(self):
+        # create thread function for download
+
+        def thread():
+            ImgDownloader.start_download(self.selected_download_folder)
+            AutomatedRename.rename_tool(self.selected_download_folder)
         print("downloadstarted")
-        ImgDownloader.start_download(self.selected_download_folder)
-        AutomatedRename.rename_tool(self.selected_download_folder)
+
+
+        # run thread 
+        threading.Thread(target=thread).start()
 
     def start_storing_to_txt(self):
         print("storing started")
-        imagetostore.store_to_files(self.selected_test_image_folder,self.selected_textfile)
+        
+        # create thread function for storing
+        def thread():
+            imagetostore.store_to_files(self.selected_test_image_folder,self.selected_textfile)
+        
+        # run thread
+        threading.Thread(target=thread).start()
 
     def browse_downloader_dir(self):
         self.selected_download_folder = filedialog.askdirectory()
