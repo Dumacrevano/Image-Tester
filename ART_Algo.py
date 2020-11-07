@@ -3,6 +3,7 @@ import math
 import DistanceCalc
 import numpy
 from PIL import Image
+import PIL
 import shutil
 from DataReader import *
 
@@ -129,7 +130,7 @@ def ART_algo():
                 output_filename = filename.lower().replace(cur_format, file_formats[i])
                 img = Image.open(output_filename)
                 result_format = img.format
-                print("Output file "+ str(i) + " format is: " + result_format)
+                # print("Output file "+ str(i) + " format is: " + result_format)
                 del img
 
                 # move file to results folder
@@ -141,16 +142,16 @@ def ART_algo():
                 #     # print(result_format.lower())
                 #     sample_errors.append(filename)
                 # IM gonna comment this out for now, seems to append non-error files
-        except FileNotFoundError as e:
-            print(e)
-            print("Error in trial:" + str(trial_num))
-            sample_errors.append(filename)
-            if(first_error == math.inf):
-                first_error = trial_num
-
+        except PIL.UnidentifiedImageError:
+                sample_errors.append(filename)
+        except FileExistsError:
+            continue
+        except FileNotFoundError:
+            continue
         except Exception as e: #catches other errors
             print(e)
-            os.rename(output_filename, output_filename.replace("Testpool".lower(), errorfolder)) #place error file into error folder
+            if os.path.isfile(output_filename):
+                os.rename(output_filename, output_filename.replace("Testpool".lower(), errorfolder)) #place error file into error folder
             print("Error in trial:" + str(trial_num))
             sample_errors.append(filename)
             if(first_error == math.inf):
