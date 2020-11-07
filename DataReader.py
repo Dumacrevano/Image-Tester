@@ -134,7 +134,7 @@ while trial_num < trials:
             del img
 
             # move file to results folder
-            os.rename(output_filename, output_filename.replace("Data".lower(), resultfolder))  # !!!!! folder name should be LOWERED!!!!
+            os.rename(output_filename, output_filename.replace("Testpool".lower(), resultfolder))  # !!!!! folder name should be LOWERED!!!!
 
             if (result_format.lower() == "jpeg"):
                result_format = "jpg"
