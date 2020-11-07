@@ -14,7 +14,7 @@ ART_sum_error = 0
 
 draw = 0
 
-for i in range x:
+for i in range (0,x):
 	RT_error, temp = RT_algo()
 	RT_sum_error += temp
 
