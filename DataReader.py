@@ -31,14 +31,21 @@ candidates = []
 sample_errors = []
 program_name = "imageconv.py"
 resultfolder = "results"
-
+errorfolder = "errors"
 # check if results folder exists
 if os.path.exists(resultfolder):
     #delete folder contents if exists
-    shutil.rmtree('results')
+    shutil.rmtree(resultfolder)
 if not os.path.exists(resultfolder):
     # create folder
     os.mkdir(resultfolder)
+
+if os.path.exists(errorfolder):
+    # delete folder contents if exists
+    shutil.rmtree(errorfolder)
+if not os.path.exists(errorfolder):
+    # create folder
+    os.mkdir(errorfolder)
 
 while trial_num < trials:
     print("Trial " + str(trial_num + 1) + ":")
@@ -144,6 +151,7 @@ while trial_num < trials:
             # IM gonna comment this out for now, seems to append non-error files
     except Exception as e:
         print(e)
+        os.rename(output_filename, output_filename.replace("Testpool".lower(), errorfolder)) #place error file into error folder
         print("Error in trial:" + str(trial_num))
         sample_errors.append(filename)
     trial_num = trial_num + 1
