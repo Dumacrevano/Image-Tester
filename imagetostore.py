@@ -2,7 +2,7 @@ from PIL import Image
 from pathlib import Path
 import os.path
 import re
-
+import time
 png_signature = ["89504E470D0A1A0A"]
 jpg_signature = ["FFD8FFE0", "FFD8FFE1", "FFD8FFE8"]
 pgm_signature = ["50350A", "50320A", "50320D"]
@@ -118,21 +118,25 @@ def imagetostore(filename,images,directory):
 
 
 #imagetostore("try.txt","D:\dumac\SEproject\Testpool\image2.pgm")
-def store_to_files(directory,filetosave):
+def store_to_files(directory,filetosave, variable, bar, root):
     filenames=[]
     directory = directory
     for filename in sorted(os.listdir(directory)):
          filenames.append(filename)
+    bar["maximum"] = len(filenames)
 
     r = re.compile("(\d+)\.")
     filenames.sort(key=lambda x: int(''.join(filter(str.isdigit, x))))
     file = open(filetosave, "r+")
-    print(file.readline())
+    # print(file.readline())
     if os.path.getsize(filetosave) != 0:
         file.truncate(0)
         # file.write("0")
-
+    i = 0
     for filename in filenames:
+         i += 1
          path=os.path.join(directory, filename)
          imagetostore(filetosave,path,directory)
-
+         variable.set(i)
+         time.sleep(0.02)
+         root.update_idletasks()
