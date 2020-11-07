@@ -1,7 +1,8 @@
 from RT_Algo import *
 from ART_Algo import *
 
-x = input("enter a number: ")
+#x = input("enter a number: ")
+x = 1000
 
 # initialize variables
 RT = 0

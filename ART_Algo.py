@@ -22,7 +22,7 @@ def ART_algo():
     program_name = "imageconv.py"
     resultfolder = "results"
     errorfolder = "errors"
-    first_error = -1
+    first_error = math.inf
 
     # check if results folder exists
     if os.path.exists(resultfolder):
@@ -145,7 +145,7 @@ def ART_algo():
             print(e)
             print("Error in trial:" + str(trial_num))
             sample_errors.append(filename)
-            if(first_error == -1):
+            if(first_error == math.inf):
                 first_error = trial_num
 
         except Exception as e: #catches other errors
@@ -153,7 +153,7 @@ def ART_algo():
             os.rename(output_filename, output_filename.replace("Testpool".lower(), errorfolder)) #place error file into error folder
             print("Error in trial:" + str(trial_num))
             sample_errors.append(filename)
-            if(first_error == -1):
+            if(first_error == math.inf):
                 first_error = trial_num
 
         trial_num = trial_num + 1
