@@ -82,13 +82,45 @@ class Tester_GUI:
 
 
     def testing_page(self):
-        self.testing_page= tkinter.Toplevel(self.root)
+        self.testing_page = tkinter.Toplevel(self.root)
         self.testing_page.grab_set()
         self.testing_page.title("New Window")
         self.testing_page.geometry("500x300")
         self.testing_page.resizable(False, False)
         # widgetStarthere
-        tkinter.Label(self.testing_page, text="coming soon").grid(row=0, column=0)
+        tkinter.Label(self.testing_page, text="Testpool file:").grid(row=0, column=0, pady=2)
+        self.testpoolFile_input_bar = tkinter.Entry(self.testing_page, width=40)
+        self.testpoolFile_input_bar.grid(row=0, column=1, padx=2)
+
+        self.testpoolfile_browse_button = tkinter.Button(self.testing_page,text="browse",width=15,command=self.browse_testpool_txt)
+        self.testpoolfile_browse_button.grid(row=0,column=2,padx=2,pady=4)
+
+
+        tkinter.Label(self.testing_page, text="Testpool Folder:").grid(row=1, column=0, pady=2)
+        self.testpoolFolder_input_bar = tkinter.Entry(self.testing_page, width=40)
+        self.testpoolFolder_input_bar.grid(row=1, column=1, padx=2)
+        self.testpoolFolder_browse_button = tkinter.Button(self.testing_page,text="browse",width=15,command=self.browse_testpool_dir)
+        self.testpoolFolder_browse_button.grid(row=1,column=2,padx=2,pady=4)
+
+        self.test_page_report=ttk.Treeview(self.testing_page, selectmode ='browse')
+        self.test_page_report.grid(row=2,column=0,columnspan=3,pady=4,padx=40)
+        verscrlbar = ttk.Scrollbar(self.testing_page,
+                                   orient="vertical",
+                                   command=self.test_page_report.yview)
+        verscrlbar.grid(row=2,column=3)
+        self.test_page_report.configure(xscrollcommand=verscrlbar.set)
+
+        self.test_page_report["columns"] = ("1", "2")
+
+        # Defining heading
+        self.test_page_report['show'] = 'headings'
+
+        self.test_page_report.column("1", width=120, anchor='c')
+        self.test_page_report.column("2", width=280, anchor='se')
+
+        self.test_page_report.heading("1", text="File")
+        self.test_page_report.heading("2", text="Error Message")
+
 
     def start_download(self):
         # create thread function for download
@@ -117,12 +149,14 @@ class Tester_GUI:
         # run thread
         threading.Thread(target=thread).start()
 
+    # image generator browse function
     def browse_downloader_dir(self):
         self.selected_download_folder = filedialog.askdirectory()
         print(self.selected_download_folder)
         self.download_dir_bar.delete(0, "end")
         self.download_dir_bar.insert(0,self.selected_download_folder)
 
+    # create testpool.txt page browse function
     def browse_testfile_dir(self):
         self.selected_test_image_folder = filedialog.askdirectory()
         print(self.selected_test_image_folder)
@@ -133,6 +167,19 @@ class Tester_GUI:
         print(self.selected_textfile)
         self.test_file_bar.delete(0, "end")
         self.test_file_bar.insert(0, self.selected_textfile)
+
+    # testing_page browsefile
+    def browse_testpool_txt(self):
+        self.selected_testpool_txt = filedialog.askopenfilename(filetypes=[('text files', 'txt')])
+        print(self.selected_testpool_txt)
+        self.testpoolFile_input_bar.delete(0, "end")
+        self.testpoolFile_input_bar.insert(0, self.selected_testpool_txt)
+
+    def browse_testpool_dir(self):
+        self.selected_testpool_folder = filedialog.askdirectory()
+        print(self.selected_testpool_folder)
+        self.testpoolFolder_input_bar.delete(0, "end")
+        self.testpoolFolder_input_bar.insert(0, self.selected_testpool_folder)
 
 
 
