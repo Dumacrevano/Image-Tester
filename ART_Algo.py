@@ -14,8 +14,8 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev):
 
     # initialize variables
     tested_pictures = []
-    trials = 10
-    trial_num = trialno
+    trials = trialno
+    trial_num = 1
     tested_pictures.append(data_pool[0])
     number_of_candidate = 3
     candidates = []
