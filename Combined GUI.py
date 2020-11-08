@@ -136,6 +136,19 @@ class Tester_GUI:
         self.start_testing_button=tkinter.Button(self.testing_page,text="start Testing",width=15,command=self.testing_function)
         self.start_testing_button.grid(row=4,column=0,padx=2,pady=4,columnspan=4)
 
+        self.progress_var_testing = tkinter.DoubleVar()
+        self.style = ttk.Style(self.root)
+        self.style.layout('text.Horizontal.TProgressbar',
+                     [('Horizontal.Progressbar.trough',
+                       {'children': [('Horizontal.Progressbar.pbar',
+                                      {'side': 'left', 'sticky': 'ns'})],
+                        'sticky': 'nswe'}),
+                      ('Horizontal.Progressbar.label', {'sticky': ''})])
+        # # , lightcolor=None, bordercolo=None, darkcolor=None
+        self.style.configure('text.Horizontal.TProgressbar', text='Trial 0/0')
+
+        self.progressbar_testing =  ttk.Progressbar(self.testing_page, style='text.Horizontal.TProgressbar', length=500, variable=self.progress_var_testing,value=0)
+        self.progressbar_testing.grid(row=5,column=0,padx=2,pady=4,columnspan=4)
 
 
     def start_download(self):
@@ -182,7 +195,7 @@ class Tester_GUI:
             self.testpoolfile_browse_button["state"] = "disabled"
             self.testpoolFolder_browse_button["state"] = "disabled"
             self.start_testing_button["state"] = "disabled"
-            ART_Algo.ART_algo(int(self.No_of_test_trial.get()),self.selected_testpool_txt,self.selected_testpool_folder,self.root,self.test_page_report)
+            ART_Algo.ART_algo(int(self.No_of_test_trial.get()),self.selected_testpool_txt,self.selected_testpool_folder,self.root,self.test_page_report, self.progress_var_testing, self.progressbar_testing, self.style)
             self.testpoolfile_browse_button["state"] = "active"
             self.testpoolFolder_browse_button["state"] = "active"
             self.start_testing_button["state"] = "active"
