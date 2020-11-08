@@ -14,7 +14,7 @@ def RT_algo(filename,testpoolfolder):
 
     # initialize variables
     trials = 10
-    trial_num = 1
+    trial_num = 0
     sample_errors = []
     program_name = "imageconv.py"
     resultfolder = "results"

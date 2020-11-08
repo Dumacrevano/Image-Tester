@@ -142,17 +142,24 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev):
 
                 if (result_format.lower() == "jpeg"):
                    result_format = "jpg"
-                # if (result_format.lower() != file_formats[i]):
-                #     # print(result_format.lower())
-                #     sample_errors.append(filename)
-                # IM gonna comment this out for now, seems to append non-error files
+
+                elif (result_format.lower() == "ppm"):
+                   result_format = "pgm"
+
+                if (result_format.lower() != file_formats[i]):
+                    sample_errors.append(filename)
+                    if (first_error == math.inf):
+                        first_error = trial_num
+                    print("Error")
+                    treev.insert("", 'end', text="L1", values=(filename, "Conversion Error from"+potential_candidate['Type']+" to "+result_format))
         except FileExistsError:
             continue
         except FileNotFoundError as e:
             print(e)
             sample_errors.append(filename)
-            treev.insert("", 'end', text="L1",
-                         values=(filename, e))
+            if (first_error == math.inf):
+                first_error = trial_num
+            treev.insert("", 'end', text="L1",values=(filename, e))
             root.update_idletasks()
         except Exception as e:  # catches other errors
             print(e)
