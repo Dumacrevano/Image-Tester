@@ -88,7 +88,7 @@ class Tester_GUI:
         self.testing_page = tkinter.Toplevel(self.root)
         self.testing_page.grab_set()
         self.testing_page.title("New Window")
-        self.testing_page.geometry("500x400")
+        self.testing_page.geometry("600x400")
         self.testing_page.resizable(False, False)
         # widgetStarthere
         tkinter.Label(self.testing_page, text="Testpool file:").grid(row=0, column=0, pady=2)
@@ -121,8 +121,8 @@ class Tester_GUI:
         # Defining heading
         self.test_page_report['show'] = 'headings'
 
-        self.test_page_report.column("1", width=120, anchor='c')
-        self.test_page_report.column("2", width=280, anchor='se')
+        self.test_page_report.column("1", width=180, anchor='c')
+        self.test_page_report.column("2", width=370, anchor='se')
 
         self.test_page_report.heading("1", text="File")
         self.test_page_report.heading("2", text="Error Message")
@@ -161,7 +161,7 @@ class Tester_GUI:
     def testing_function(self):
         print("start testing")
         def thread():
-            algo_comparison.algo_comparison(int(self.No_of_test_trial.get()),self.selected_testpool_txt,self.selected_testpool_folder)
+            algo_comparison.algo_comparison(int(self.No_of_test_trial.get()),self.selected_testpool_txt,self.selected_testpool_folder,self.root,self.test_page_report)
         threading.Thread(target=thread).start()
 
 

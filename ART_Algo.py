@@ -8,7 +8,7 @@ from DataReader import *
 import PIL
 
 
-def ART_algo(filename,testpoolfolder):
+def ART_algo(filename,testpoolfolder,root,treev):
     # data pool creation
     data_pool, length = datareader(filename)
 
@@ -156,6 +156,9 @@ def ART_algo(filename,testpoolfolder):
             sample_errors.append(filename)
             if (first_error == math.inf):
                 first_error = trial_num
+            treev.insert("", 'end', text="L1",
+                         values=(filename, e))
+            root.update_idletasks()
 
         trial_num = trial_num + 1
     print("Possible errors for:")

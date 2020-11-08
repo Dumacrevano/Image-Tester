@@ -2,7 +2,7 @@ from RT_Algo import *
 from ART_Algo import *
 
 #x = input("enter a number: ")
-def algo_comparison(trial_no,filename,testpoolfolder):
+def algo_comparison(trial_no,filename,testpoolfolder, root , treev):
 	x = trial_no
 
 	# initialize variables
@@ -17,10 +17,10 @@ def algo_comparison(trial_no,filename,testpoolfolder):
 	draw = 0
 
 	for i in range (0,x):
-		RT_error, temp = RT_algo(filename,testpoolfolder)
+		RT_error, temp = RT_algo(filename,testpoolfolder,root,treev)
 		RT_sum_error += temp
 
-		ART_error, temp = ART_algo(filename,testpoolfolder)
+		ART_error, temp = ART_algo(filename,testpoolfolder,root,treev)
 		ART_sum_error += temp
 
 		if(RT_error < ART_error):
