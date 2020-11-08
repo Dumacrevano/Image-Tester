@@ -58,7 +58,8 @@ class Tester_GUI:
         self.start_download_button.grid(row=3, column=0,pady=20,columnspan=4)
         self.progress_var_download_image = tkinter.DoubleVar()
         self.maximum_store = 0
-        self.progressbar_download_image = ttk.Progressbar(self.downloader_page, length=500, variable=self.progress_var_download_image, maximum=51)
+        self.progressbar_download_image = ttk.Progressbar(self.downloader_page, length=500, variable=self.progress_var_download_image,
+                                                          maximum=int(self.No_of_generated_image.get()))
         self.progressbar_download_image.grid(row=4, column=0,pady=20,columnspan=4)
 
     def create_test_file_page(self):
@@ -116,11 +117,11 @@ class Tester_GUI:
         self.No_of_test_trial.insert(0, '50')
         self.No_of_test_trial.grid(row=2,column=1,pady=2)
         self.test_page_report=ttk.Treeview(self.testing_page, selectmode ='browse')
-        self.test_page_report.grid(row=3,column=0,columnspan=3,pady=4,padx=40)
+        self.test_page_report.grid(row=3,column=0,columnspan=3,pady=4,padx=(15,0))
         verscrlbar = ttk.Scrollbar(self.testing_page,
                                    orient="vertical",
                                    command=self.test_page_report.yview)
-        verscrlbar.grid(row=3,column=3)
+        verscrlbar.grid(row=3,column=5)
         self.test_page_report.configure(xscrollcommand=verscrlbar.set)
 
         self.test_page_report["columns"] = ("1", "2")
@@ -147,33 +148,34 @@ class Tester_GUI:
         # # , lightcolor=None, bordercolo=None, darkcolor=None
         self.style.configure('text.Horizontal.TProgressbar', text='Trial 0/0')
 
-        self.progressbar_testing =  ttk.Progressbar(self.testing_page, style='text.Horizontal.TProgressbar', length=500, variable=self.progress_var_testing,value=0)
+        self.progressbar_testing = ttk.Progressbar(self.testing_page, style='text.Horizontal.TProgressbar', length=500, variable=self.progress_var_testing,value=0)
         self.progressbar_testing.grid(row=5,column=0,padx=2,pady=4,columnspan=4)
 
 
     def start_download(self):
         # create thread function for download
+        self.progressbar_download_image["maximum"]=int(self.No_of_generated_image.get())
         def thread():
             self.browse_button["state"]="disabled"
             self.start_download_button["state"]="disabled"
             testpool = self.selected_download_folder
             if (os.path.exists(testpool)):
                 shutil.rmtree(testpool)
-            for i in range(1, 11):
+            for i in range(1, int(self.No_of_generated_image.get())+1):
                 ImgDownloader.start_download(self.selected_download_folder)
                 self.progress_var_download_image.set(i)
                 time.sleep(0.02)
                 self.root.update_idletasks()
             AutomatedRename.rename_tool(self.selected_download_folder)
-        print("Download Started")
-        self.browse_button["state"]="active"
-        self.start_download_button["state"]="active"
+            print("Download completed")
+            self.browse_button["state"]="active"
+            self.start_download_button["state"]="active"
         # run thread 
         threading.Thread(target=thread).start()
     # storing to text
     def start_storing_to_txt(self):
         print("Storing Started")
-        
+
         # create thread function for storing
         def thread():
             self.storing_button["state"] = "disabled"

@@ -52,28 +52,31 @@ def downloadimages(file_type,words,response,directory):
 def start_download(testpool):
     testpool = testpool
 
-
-    corpus_link = "https://www.randomlists.com/data/words.json"
-    response = urllib.request.urlopen(corpus_link)
-    json_data = response.read().decode()
-    words = json.loads(json_data)
-
-
-    # creating object
-    response = google_images_download.googleimagesdownload()
+    randomizer=random.randint(0,12)
+    if randomizer >=4:
+        corpus_link = "https://www.randomlists.com/data/words.json"
+        response = urllib.request.urlopen(corpus_link)
+        json_data = response.read().decode()
+        words = json.loads(json_data)
 
 
-    file_type= [
-        "png",
-        "gif",
-        "jpg",
-        "bmp",
-        "webp",
-        "ico"
-    ]
+        # creating object
+        response = google_images_download.googleimagesdownload()
 
-    type = file_type[random.randint(0, len(file_type)-1)]
 
-    downloadimages(type,words,response,testpool)
+        file_type= [
+            "png",
+            "gif",
+            "jpg",
+            "bmp",
+            "webp",
+            "ico"
+        ]
+
+        type = file_type[random.randint(0, len(file_type)-1)]
+
+        downloadimages(type,words,response,testpool)
+    else:
+        print("inserted from home")
     # print()
 
