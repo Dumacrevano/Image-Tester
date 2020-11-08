@@ -8,17 +8,13 @@ from DataReader import *
 import PIL
 
 
-def ART_algo(filename,testpoolfolder,root,treev):
+def RT_algo(filename,testpoolfolder):
     # data pool creation
     data_pool, length = datareader(filename)
 
     # initialize variables
-    tested_pictures = []
     trials = 10
     trial_num = 1
-    tested_pictures.append(data_pool[0])
-    number_of_candidate = 3
-    candidates = []
     sample_errors = []
     program_name = "imageconv.py"
     resultfolder = "results"
@@ -43,59 +39,10 @@ def ART_algo(filename,testpoolfolder,root,treev):
     while trial_num < trials:
         print("Trial " + str(trial_num + 1) + ":")
 
-        for i in range(number_of_candidate):
-            candidates.append(data_pool[numpy.random.randint(0, length)])
-
-        # initialize variables
-        potential_candidate = ""
-        min_dist = math.inf
-        max_dist = -math.inf
-
-        # loop through candidates to find ideal candidate
-        for i in candidates:
-            # reset min distance
-            min_dist = math.inf
-            imageB = i["Name"]+i["Type"]
-            imageBRGB = eval(i["RGB"])
-            imageBDimension = i["Dimension"]
-            imageBBitDepth = i["BitDepth"]
-            imageBSize = i['Size']
-            imageBSignature = i['Signature']
-            # print("Image B", imageB)
-            # loop through previous images and compare distance to find min distance
-            for j in tested_pictures:
-                imageA = j["Name"]+j["Type"]
-                # print("Image A", imageA)
-                imageARGB = eval(j["RGB"])
-                imageADimension = j["Dimension"]
-                imageABitDepth = j["BitDepth"]
-                imageASize = j['Size']
-                imageASignature = j['Signature']
-                color_dist = DistanceCalc.image_color_difference(imageARGB, imageBRGB)
-                dimen_dist = DistanceCalc.feature_difference(imageADimension, imageBDimension)
-                bitdept_dist = DistanceCalc.feature_difference(imageABitDepth, imageBBitDepth)
-                size_dist = DistanceCalc.feature_difference(imageASize, imageBSize)
-                signature_dist = DistanceCalc.feature_difference(imageASignature, imageBSignature)
-                dist = (color_dist + dimen_dist + bitdept_dist + size_dist + signature_dist)/5
-                # print("ImageA",imageA, "ImageB", imageB, "Distance", dist)
-                # compare distance between candidate and previous points
-                if dist < min_dist:
-                    min_dist = dist
-                # print("min dist: " + str(min_dist))
-                del imageA
-
-
-            # compare distance between candidate to find max distance
-            if min_dist > max_dist:
-                potential_candidate = i
-                max_dist = min_dist
-            del imageB
-            # print("max dist: " + str(max_dist))
-            # print("\n")
-
+        potential_candidate = data_pool[numpy.random.randint(0, length)]
 
         print("Selected Candidate", potential_candidate["Name"]+potential_candidate["Type"])
-        tested_pictures.append(potential_candidate)
+
         filename = potential_candidate["Name"] + potential_candidate["Type"]
         try:
             # set formats list
@@ -130,7 +77,7 @@ def ART_algo(filename,testpoolfolder,root,treev):
                 output_filename = filename.lower().replace(cur_format, file_formats[i])
                 img = Image.open(output_filename)
                 result_format = img.format
-                print("Output file "+ str(i) + " format is: " + result_format)
+                # print("Output file "+ str(i) + " format is: " + result_format)
                 del img
 
                 # move file to results folder
@@ -142,6 +89,7 @@ def ART_algo(filename,testpoolfolder,root,treev):
                 #     # print(result_format.lower())
                 #     sample_errors.append(filename)
                 # IM gonna comment this out for now, seems to append non-error files
+
         except FileExistsError:
             continue
         except FileNotFoundError as e:
@@ -156,9 +104,6 @@ def ART_algo(filename,testpoolfolder,root,treev):
             sample_errors.append(filename)
             if (first_error == math.inf):
                 first_error = trial_num
-            treev.insert("", 'end', text="L1",
-                         values=(filename, e))
-            root.update_idletasks()
 
         trial_num = trial_num + 1
     print("Possible errors for:")
