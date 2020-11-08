@@ -177,6 +177,8 @@ class Tester_GUI:
     def testing_function(self):
         print("start testing")
         def thread():
+            for i in self.test_page_report.get_children():
+                self.test_page_report.delete(i)
             self.testpoolfile_browse_button["state"] = "disabled"
             self.testpoolFolder_browse_button["state"] = "disabled"
             self.start_testing_button["state"] = "disabled"
