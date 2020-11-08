@@ -10,7 +10,7 @@ import AutomatedRename
 import imagetostore
 import threading
 import time
-import algo_comparison
+import ART_Algo
 
 
 class Tester_GUI:
@@ -161,7 +161,7 @@ class Tester_GUI:
     def testing_function(self):
         print("start testing")
         def thread():
-            algo_comparison.algo_comparison(int(self.No_of_test_trial.get()),self.selected_testpool_txt,self.selected_testpool_folder,self.root,self.test_page_report)
+            ART_Algo.ART_algo(int(self.No_of_test_trial.get()),self.selected_testpool_txt,self.selected_testpool_folder,self.root,self.test_page_report)
         threading.Thread(target=thread).start()
 
 
