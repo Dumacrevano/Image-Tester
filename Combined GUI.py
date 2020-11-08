@@ -37,23 +37,28 @@ class Tester_GUI:
         self.downloader_page = tkinter.Toplevel(self.root)
         self.downloader_page.grab_set()
         self.downloader_page.title("Download Image")
-        self.downloader_page.geometry("500x300")
+        self.downloader_page.geometry("575x300")
         self.downloader_page.resizable(False, False)
         #widgetStarthere
-        tkinter.Label(self.downloader_page,text="Directory(default/testpool)").grid(row=0,column=0)
+        tkinter.Label(self.downloader_page,text="Image Generator").grid(row=0,column=0,columnspan=4,pady=4)
+        tkinter.Label(self.downloader_page,text="Amount:").grid(row=1,column=0)
+        self.No_of_generated_image=tkinter.Entry(self.downloader_page,width=6)
+        self.No_of_generated_image.insert(0, '200')
+        self.No_of_generated_image.grid(row=1,column=1)
+        tkinter.Label(self.downloader_page, text="Folder:").grid(row=2, column=0)
         self.download_dir_bar = tkinter.Entry(self.downloader_page, width=55)
-        self.download_dir_bar.grid(row=1, column=0, padx=4, pady=4)
+        self.download_dir_bar.grid(row=2, column=1, padx=4, pady=4,columnspan=2)
         self.browse_button = tkinter.Button(self.downloader_page, text="Browse", width=20,
                                               command=self.browse_downloader_dir)
-        self.browse_button.grid(row=1, column=1)
+        self.browse_button.grid(row=2, column=3)
         self.start_download_button=tkinter.Button(self.downloader_page, text="Start", width=20,
                                               command=self.start_download)
 
-        self.start_download_button.grid(row=2, column=0,pady=20,columnspan=2)
+        self.start_download_button.grid(row=3, column=0,pady=20,columnspan=4)
         self.progress_var_download_image = tkinter.DoubleVar()
         self.maximum_store = 0
         self.progressbar_download_image = ttk.Progressbar(self.downloader_page, length=500, variable=self.progress_var_download_image, maximum=51)
-        self.progressbar_download_image.grid(row=3, column=0,pady=20,columnspan=2)
+        self.progressbar_download_image.grid(row=4, column=0,pady=20,columnspan=4)
 
     def create_test_file_page(self):
         self.create_test_file_page = tkinter.Toplevel(self.root)
@@ -107,6 +112,7 @@ class Tester_GUI:
 
         tkinter.Label(self.testing_page, text="No of Trial:").grid(row=2,column=0,pady=2)
         self.No_of_test_trial=tkinter.Entry(self.testing_page,width=10)
+        self.No_of_test_trial.insert(0, '50')
         self.No_of_test_trial.grid(row=2,column=1,pady=2)
         self.test_page_report=ttk.Treeview(self.testing_page, selectmode ='browse')
         self.test_page_report.grid(row=3,column=0,columnspan=3,pady=4,padx=40)
