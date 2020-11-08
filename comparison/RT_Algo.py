@@ -81,14 +81,16 @@ def RT_algo(filename,testpoolfolder):
                 del img
 
                 # move file to results folder
-                os.rename(output_filename, output_filename.replace(testpoolfolder.lower(), resultfolder))  # !!!!! folder name should be LOWERED!!!!
+                os.rename(output_filename, output_filename.replace(testpoolfolder.lower(), "comparison/"+resultfolder))  # !!!!! folder name should be LOWERED!!!!
 
                 if (result_format.lower() == "jpeg"):
                    result_format = "jpg"
-                # if (result_format.lower() != file_formats[i]):
-                #     # print(result_format.lower())
-                #     sample_errors.append(filename)
-                # IM gonna comment this out for now, seems to append non-error files
+
+                elif result_format.lower() == "ppm":
+                    result_format = "pgm"
+
+                if (result_format.lower() != file_formats[i]):
+                    sample_errors.append(filename)
 
         except FileExistsError:
             continue
@@ -98,9 +100,11 @@ def RT_algo(filename,testpoolfolder):
         except Exception as e:  # catches other errors
             print(e)
             if os.path.isfile(output_filename):
-                os.rename(output_filename, output_filename.replace(testpoolfolder.lower(),
-                                                                   errorfolder))  # place error file into error folder
-            print("Error in trial:" + str(trial_num))
+                try:
+                    os.rename(output_filename, output_filename.replace(testpoolfolder.lower(), "comparison/" +errorfolder))  # place error file into error folder
+                except Exception as e:
+                    continue
+            # print("Error in trial:" + str(trial_num))
             sample_errors.append(filename)
             if (first_error == math.inf):
                 first_error = trial_num
@@ -111,3 +115,4 @@ def RT_algo(filename,testpoolfolder):
     print("first error found at trial:" + str(first_error))
     return first_error, len(sample_errors)
 
+RT_algo("D:\Education\Semester 6\Software Engineering\SE-Project\Image-Tester/testpool.txt", "testpool")
