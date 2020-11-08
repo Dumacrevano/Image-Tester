@@ -95,12 +95,13 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev):
                 del imageB
                 # print("max dist: " + str(max_dist))
                 # print("\n")
-            trial_num = trial_num + 1
 
 
         print("Selected Candidate", potential_candidate["Name"]+potential_candidate["Type"])
         tested_pictures.append(potential_candidate)
+        trial_num = trial_num + 1
         filename = potential_candidate["Name"] + potential_candidate["Type"]
+
         try:
             # set formats list
             file_formats = ["png", "gif", "jpg", "bmp", "webp", "ico", "pgm"]
@@ -134,7 +135,7 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev):
                 output_filename = filename.lower().replace(cur_format, file_formats[i])
                 img = Image.open(output_filename)
                 result_format = img.format
-                print("Output file "+ str(i) + " format is: " + result_format)
+                # print("Output file "+ str(i) + " format is: " + result_format)
                 del img
 
                 # move file to results folder
@@ -152,6 +153,9 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev):
                         first_error = trial_num
                     print("Error")
                     treev.insert("", 'end', text="L1", values=(filename, "Conversion Error from"+potential_candidate['Type']+" to "+result_format))
+
+        except PermissionError:
+            continue
         except FileExistsError:
             continue
         except FileNotFoundError as e:
