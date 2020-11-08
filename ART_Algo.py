@@ -6,15 +6,16 @@ from PIL import Image
 import shutil
 from DataReader import *
 import PIL
+import time
 
-
-def ART_algo(trialno,filename,testpoolfolder,root,treev):
+def ART_algo(trialno,filename,testpoolfolder,root,treev, variable, bar, style):
     # data pool creation
     data_pool, length = datareader(filename)
 
     # initialize variables
     tested_pictures = []
     trials = trialno
+    bar["maximum"] = trials
     trial_num = 1
     tested_pictures.append(data_pool[0])
     number_of_candidate = 3
@@ -100,6 +101,11 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev):
         print("Selected Candidate", potential_candidate["Name"]+potential_candidate["Type"])
         tested_pictures.append(potential_candidate)
         trial_num = trial_num + 1
+        variable.set(trial_num)
+        bar['value'] = trial_num
+        style.configure('text.Horizontal.TProgressbar',text='Trial No: {0}/{1}'.format(trial_num, trials))
+        time.sleep(0.02)
+        root.update_idletasks()
         filename = potential_candidate["Name"] + potential_candidate["Type"]
 
         try:
