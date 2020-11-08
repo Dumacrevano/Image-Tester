@@ -1,52 +1,52 @@
 51
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image0,117.81007475970097,130.58443099560935,150.334539772952,.jpg,50562,24,3800,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image1,41.06346370967742,41.06346370967742,41.06346370967742,.pgm,248000,8,248038,47.66666667
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image2,111.77463254422477,111.77463254422477,111.77463254422477,.png,553536,8,356258,53.125
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image3,88.14281421207147,101.89892854666081,82.84093483436973,.jpg,173036,24,55842,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image4,123.26155064935065,162.5808935064935,163.1244077922078,.png,385000,8,188482,53.125
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image5,219.29167407407408,210.81471604938272,202.32377283950618,.jpg,50625,24,5587,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image6,109.97715254237288,113.18728813559322,121.10463653483993,.png,265500,8,110454,53.125
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image7,217.32783866666668,207.09817466666667,205.20074266666666,.jpg,750000,24,42226,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image8,111.19575124963247,111.13004864879314,118.84591096201652,.png,299288,32,584686,53.125
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image9,126.6656806412712,128.8252748811804,138.69075689863092,.jpg,140970,24,8274,237.75
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image10,217.80454074361964,216.46595791769226,211.76445297318307,.jpg,370512,24,82975,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image11,103.25843253968254,100.82707093253968,104.26977926587301,.jpg,16128,24,9333,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image12,135.668896484375,137.7636572265625,127.7566650390625,.jpg,409600,24,42325,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image13,157.54381525472297,146.7435537313493,142.07651980192026,.jpg,247779,24,28112,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image14,118.31050041258989,101.18920193327833,93.2703848874219,.jpg,339320,24,42820,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image15,101.29128622469234,98.79015482334259,97.84960301707027,.jpg,50380,24,16693,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image16,132.50941811209327,152.9694176500608,174.45361088884547,.jpg,476157,24,184469,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image17,70.38887675955185,70.38887675955185,70.38887675955185,.pgm,348100,8,348138,47.66666667
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image18,254.9106765432099,239.26765432098765,192.39934814814814,.png,50625,8,5293,53.125
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image19,116.86876987641587,94.6341842588129,70.71548744165536,.JPG,267591,24,49575,71.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image20,211.2512,200.41046,185.056088,.jpg,250000,24,56203,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image21,98.16803377080666,82.79797535211267,71.17155489756722,.jpg,49984,24,11963,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image22,166.57596624606933,167.9364526529475,167.97940134538072,.jpg,50246,24,5335,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image23,209.52743364558938,204.09487900078065,198.3031557377049,.jpg,512400,24,22997,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image24,178.292645802179,208.49649469486576,162.10374563839636,.jpg,561720,24,144432,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image25,163.4722203504043,148.1502358490566,141.11623146900268,.jpg,118720,24,60539,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image26,229.938037109375,215.03990966796874,201.807587890625,.jpg,409600,24,57278,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image27,181.83722251685734,222.43982814354624,169.2085132712074,.jpg,316776,24,41392,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image28,132.9973571783408,121.14332836562345,133.2124391455539,.jpg,50325,24,14030,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image29,184.61112324044814,184.61112324044814,184.61112324044814,.pgm,348100,8,348138,47.66666667
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image30,208.76007852624483,182.63774812112078,185.17376906145273,.png,50429,8,6487,53.125
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image31,44.98820637846624,29.329488018076947,55.25109512199956,.jpg,50451,24,26261,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image32,100.80057123982358,100.80057123982358,100.80057123982358,.pgm,154401,8,154436,47.66666667
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image33,132.53000375926428,152.99453541583972,174.65453621389582,.png,476157,32,915449,53.125
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image34,226.75944144715965,146.50468105363376,146.66536417010474,.jpg,50416,24,17672,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image35,125,125,125,.pgm,248000,8,248037,47.66666667
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image36,255.0,0.0,0.0,.png,1,24,69,53.125
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image37,107.64132833583209,109.72850074962518,113.36152323838081,.jpg,667000,24,192080,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image38,156.829623389364,156.829623389364,156.829623389364,.pgm,17915904,8,17915943,47.66666667
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image39,235.89574320987654,239.68867160493826,243.01738271604938,.png,50625,24,7530,0.25
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image40,254.0,0.0,0.0,.jpg,1,24,635,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image41,98.170376610636,98.170376610636,98.170376610636,.pgm,17915904,8,17915943,46.66666667
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image42,255.0,0.0,0.0,.png,1,24,69,53.125
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image43,92.25190885230255,145.46188260558338,144.47609957846177,.jpg,50292,24,14374,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image44,188.12666341145834,188.12666341145834,188.12666341145834,.png,307200,8,106809,53.125
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image45,84.26842399691358,140.07728780864198,130.75888310185186,.jpg,518400,24,65764,237.5
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image46,88.47410611927062,76.68676429235794,68.79537539746057,.png,231155,32,435402,53.125
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image47,125,125,125,.pgm,307200,8,307251,47.66666667
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image48,125,125,125,.pgm,118000,8,118039,47.66666667
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image49,125,125,125,.pgm,360960,8,361022,47.66666667
-D:/Binus Stuff/UOW Semester 7/Software Engineer Practices and Principles/Project/Image-Tester/Testpool\image50,125,125,125,.pgm,307200,8,1264991,47.66666667
+D:/dumac/ImageTester/Testpool\image0,117.81007475970097,130.58443099560935,150.334539772952,.jpg,50562,24,3800,237.5
+D:/dumac/ImageTester/Testpool\image1,41.06346370967742,41.06346370967742,41.06346370967742,.pgm,248000,8,248038,47.66666667
+D:/dumac/ImageTester/Testpool\image2,111.77463254422477,111.77463254422477,111.77463254422477,.png,553536,8,356258,53.125
+D:/dumac/ImageTester/Testpool\image3,88.14281421207147,101.89892854666081,82.84093483436973,.jpg,173036,24,55842,237.5
+D:/dumac/ImageTester/Testpool\image4,123.26155064935065,162.5808935064935,163.1244077922078,.png,385000,8,188482,53.125
+D:/dumac/ImageTester/Testpool\image5,219.29167407407408,210.81471604938272,202.32377283950618,.jpg,50625,24,5587,237.5
+D:/dumac/ImageTester/Testpool\image6,109.97715254237288,113.18728813559322,121.10463653483993,.png,265500,8,110454,53.125
+D:/dumac/ImageTester/Testpool\image7,217.32783866666668,207.09817466666667,205.20074266666666,.jpg,750000,24,42226,237.5
+D:/dumac/ImageTester/Testpool\image8,111.19575124963247,111.13004864879314,118.84591096201652,.png,299288,32,584686,53.125
+D:/dumac/ImageTester/Testpool\image9,126.6656806412712,128.8252748811804,138.69075689863092,.jpg,140970,24,8274,237.75
+D:/dumac/ImageTester/Testpool\image10,217.80454074361964,216.46595791769226,211.76445297318307,.jpg,370512,24,82975,237.5
+D:/dumac/ImageTester/Testpool\image11,103.25843253968254,100.82707093253968,104.26977926587301,.jpg,16128,24,9333,237.5
+D:/dumac/ImageTester/Testpool\image12,135.668896484375,137.7636572265625,127.7566650390625,.jpg,409600,24,42325,237.5
+D:/dumac/ImageTester/Testpool\image13,157.54381525472297,146.7435537313493,142.07651980192026,.jpg,247779,24,28112,237.5
+D:/dumac/ImageTester/Testpool\image14,118.31050041258989,101.18920193327833,93.2703848874219,.jpg,339320,24,42820,237.5
+D:/dumac/ImageTester/Testpool\image15,101.29128622469234,98.79015482334259,97.84960301707027,.jpg,50380,24,16693,237.5
+D:/dumac/ImageTester/Testpool\image16,132.50941811209327,152.9694176500608,174.45361088884547,.jpg,476157,24,184469,237.5
+D:/dumac/ImageTester/Testpool\image17,70.38887675955185,70.38887675955185,70.38887675955185,.pgm,348100,8,348138,47.66666667
+D:/dumac/ImageTester/Testpool\image18,254.9106765432099,239.26765432098765,192.39934814814814,.png,50625,8,5293,53.125
+D:/dumac/ImageTester/Testpool\image19,116.86876987641587,94.6341842588129,70.71548744165536,.JPG,267591,24,49575,71.5
+D:/dumac/ImageTester/Testpool\image20,211.2512,200.41046,185.056088,.jpg,250000,24,56203,237.5
+D:/dumac/ImageTester/Testpool\image21,98.16803377080666,82.79797535211267,71.17155489756722,.jpg,49984,24,11963,237.5
+D:/dumac/ImageTester/Testpool\image22,166.57596624606933,167.9364526529475,167.97940134538072,.jpg,50246,24,5335,237.5
+D:/dumac/ImageTester/Testpool\image23,209.52743364558938,204.09487900078065,198.3031557377049,.jpg,512400,24,22997,237.5
+D:/dumac/ImageTester/Testpool\image24,178.292645802179,208.49649469486576,162.10374563839636,.jpg,561720,24,144432,237.5
+D:/dumac/ImageTester/Testpool\image25,163.4722203504043,148.1502358490566,141.11623146900268,.jpg,118720,24,60539,237.5
+D:/dumac/ImageTester/Testpool\image26,229.938037109375,215.03990966796874,201.807587890625,.jpg,409600,24,57278,237.5
+D:/dumac/ImageTester/Testpool\image27,181.83722251685734,222.43982814354624,169.2085132712074,.jpg,316776,24,41392,237.5
+D:/dumac/ImageTester/Testpool\image28,132.9973571783408,121.14332836562345,133.2124391455539,.jpg,50325,24,14030,237.5
+D:/dumac/ImageTester/Testpool\image29,184.61112324044814,184.61112324044814,184.61112324044814,.pgm,348100,8,348138,47.66666667
+D:/dumac/ImageTester/Testpool\image30,208.76007852624483,182.63774812112078,185.17376906145273,.png,50429,8,6487,53.125
+D:/dumac/ImageTester/Testpool\image31,44.98820637846624,29.329488018076947,55.25109512199956,.jpg,50451,24,26261,237.5
+D:/dumac/ImageTester/Testpool\image32,100.80057123982358,100.80057123982358,100.80057123982358,.pgm,154401,8,154436,47.66666667
+D:/dumac/ImageTester/Testpool\image33,132.53000375926428,152.99453541583972,174.65453621389582,.png,476157,32,915449,53.125
+D:/dumac/ImageTester/Testpool\image34,226.75944144715965,146.50468105363376,146.66536417010474,.jpg,50416,24,17672,237.5
+D:/dumac/ImageTester/Testpool\image35,125,125,125,.pgm,248000,8,248037,47.66666667
+D:/dumac/ImageTester/Testpool\image36,255.0,0.0,0.0,.png,1,24,69,53.125
+D:/dumac/ImageTester/Testpool\image37,107.64132833583209,109.72850074962518,113.36152323838081,.jpg,667000,24,192080,237.5
+D:/dumac/ImageTester/Testpool\image38,156.829623389364,156.829623389364,156.829623389364,.pgm,17915904,8,17915943,47.66666667
+D:/dumac/ImageTester/Testpool\image39,235.89574320987654,239.68867160493826,243.01738271604938,.png,50625,24,69457,53.125
+D:/dumac/ImageTester/Testpool\image40,254.0,0.0,0.0,.jpg,1,24,635,237.5
+D:/dumac/ImageTester/Testpool\image41,98.170376610636,98.170376610636,98.170376610636,.pgm,17915904,8,17915943,46.66666667
+D:/dumac/ImageTester/Testpool\image42,255.0,0.0,0.0,.png,1,24,69,53.125
+D:/dumac/ImageTester/Testpool\image43,92.25190885230255,145.46188260558338,144.47609957846177,.jpg,50292,24,14374,237.5
+D:/dumac/ImageTester/Testpool\image44,188.12666341145834,188.12666341145834,188.12666341145834,.png,307200,8,106809,53.125
+D:/dumac/ImageTester/Testpool\image45,84.26842399691358,140.07728780864198,130.75888310185186,.jpg,518400,24,65764,237.5
+D:/dumac/ImageTester/Testpool\image46,88.47410611927062,76.68676429235794,68.79537539746057,.png,231155,32,435402,53.125
+D:/dumac/ImageTester/Testpool\image47,125,125,125,.pgm,307200,8,307251,47.66666667
+D:/dumac/ImageTester/Testpool\image48,125,125,125,.pgm,118000,8,118039,47.66666667
+D:/dumac/ImageTester/Testpool\image49,125,125,125,.pgm,360960,8,361022,47.66666667
+D:/dumac/ImageTester/Testpool\image50,125,125,125,.pgm,307200,8,1264991,47.66666667

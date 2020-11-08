@@ -20,6 +20,7 @@ class Tester_GUI:
         self.root.geometry("500x400")
         self.root.resizable(False, False)
         self.create_widget()
+        #self.not_in_progress = False
 
     def create_widget(self):
         generate_button=tkinter.Button(self.root, text="Generate Test Cases", width=20, command=self.imagedownload_page)
@@ -81,8 +82,8 @@ class Tester_GUI:
                                                        command=self.browse_testfile)
         self.test_file_button.grid(row=2, column=2, padx=2, pady=4)
 
-        storing_button=tkinter.Button(self.create_test_file_page, text="Store To .txt", width=15,command=self.start_storing_to_txt)
-        storing_button.grid(row=3, column=0, pady=20 ,padx=((500-40)/4),columnspan=3)
+        self.storing_button=tkinter.Button(self.create_test_file_page, text="Store To .txt", width=15,command=self.start_storing_to_txt)
+        self.storing_button.grid(row=3, column=0, pady=20 ,padx=((500-40)/4),columnspan=3)
 
         self.progress_var_store_text = tkinter.DoubleVar()
         self.progressbar_store_text  = ttk.Progressbar(self.create_test_file_page, length=500, variable=self.progress_var_store_text)
@@ -132,14 +133,16 @@ class Tester_GUI:
 
         self.test_page_report.heading("1", text="File")
         self.test_page_report.heading("2", text="Error Message")
-        start_testing_button=tkinter.Button(self.testing_page,text="start Testing",width=15,command=self.testing_function)
-        start_testing_button.grid(row=4,column=0,padx=2,pady=4,columnspan=4)
+        self.start_testing_button=tkinter.Button(self.testing_page,text="start Testing",width=15,command=self.testing_function)
+        self.start_testing_button.grid(row=4,column=0,padx=2,pady=4,columnspan=4)
 
 
 
     def start_download(self):
         # create thread function for download
         def thread():
+            self.browse_button["state"]="disabled"
+            self.start_download_button["state"]="disabled"
             testpool = self.selected_download_folder
             if (os.path.exists(testpool)):
                 shutil.rmtree(testpool)
@@ -150,8 +153,8 @@ class Tester_GUI:
                 self.root.update_idletasks()
             AutomatedRename.rename_tool(self.selected_download_folder)
         print("Download Started")
-
-
+        self.browse_button["state"]="active"
+        self.start_download_button["state"]="active"
         # run thread 
         threading.Thread(target=thread).start()
     # storing to text
@@ -160,14 +163,27 @@ class Tester_GUI:
         
         # create thread function for storing
         def thread():
+            self.storing_button["state"] = "disabled"
+            self.test_image_folder_button["state"] = "disabled"
+            self.test_file_button["state"] = "disabled"
             imagetostore.store_to_files(self.selected_test_image_folder,self.selected_textfile, self.progress_var_store_text, self.progressbar_store_text,  self.root)
+            self.storing_button["state"] = "active"
+            self.test_image_folder_button["state"] = "active"
+            self.test_file_button["state"] = "active"
         # run thread
         threading.Thread(target=thread).start()
+
 
     def testing_function(self):
         print("start testing")
         def thread():
+            self.testpoolfile_browse_button["state"] = "disabled"
+            self.testpoolFolder_browse_button["state"] = "disabled"
+            self.start_testing_button["state"] = "disabled"
             ART_Algo.ART_algo(int(self.No_of_test_trial.get()),self.selected_testpool_txt,self.selected_testpool_folder,self.root,self.test_page_report)
+            self.testpoolfile_browse_button["state"] = "active"
+            self.testpoolFolder_browse_button["state"] = "active"
+            self.start_testing_button["state"] = "active"
         threading.Thread(target=thread).start()
 
 
