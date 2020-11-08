@@ -95,7 +95,7 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev):
                 del imageB
                 # print("max dist: " + str(max_dist))
                 # print("\n")
-        
+            trial_num = trial_num + 1
 
 
         print("Selected Candidate", potential_candidate["Name"]+potential_candidate["Type"])
@@ -174,7 +174,7 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev):
                          values=(filename, e))
             root.update_idletasks()
 
-        trial_num = trial_num + 1
+
     print("Possible errors for:")
     print(sample_errors)
     print("first error found at trial:" + str(first_error))
