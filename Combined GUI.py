@@ -24,11 +24,11 @@ class Tester_GUI:
 
     def create_widget(self):
         generate_button=tkinter.Button(self.root, text="Generate Test Cases", width=20, command=self.imagedownload_page)
-        generate_button.grid(row=0,column=0,columnspan=3,pady=20,padx=((400-20)/2))
+        generate_button.grid(row=0,column=0,columnspan=3,pady=20,padx=((400-40)/2))
         create_test_file=tkinter.Button(self.root, text="Create Test File", width=20, command=self.create_test_file_page)
-        create_test_file.grid(row=1,column=0,columnspan=3,pady=20,padx=((400-20)/2))
+        create_test_file.grid(row=1,column=0,columnspan=3,pady=20,padx=((400-40)/2))
         start_test=tkinter.Button(self.root, text="Start Testing", width=20, command=self.testing_page)
-        start_test.grid(row=2, column=0, columnspan=3, pady=20, padx=((400 - 20) / 2))
+        start_test.grid(row=2, column=0, columnspan=3, pady=20, padx=((400 - 40) / 2))
         #self.select_button=tkinter.Button()
         self.root.mainloop()
 
@@ -94,7 +94,7 @@ class Tester_GUI:
     def testing_page(self):
         self.testing_page = tkinter.Toplevel(self.root)
         self.testing_page.grab_set()
-        self.testing_page.title("New Window")
+        self.testing_page.title("Testing Image Conversion Output")
         self.testing_page.geometry("600x400")
         self.testing_page.resizable(False, False)
         # widgetStarthere
@@ -102,14 +102,14 @@ class Tester_GUI:
         self.testpoolFile_input_bar = tkinter.Entry(self.testing_page, width=40)
         self.testpoolFile_input_bar.grid(row=0, column=1, padx=2)
 
-        self.testpoolfile_browse_button = tkinter.Button(self.testing_page,text="browse",width=15,command=self.browse_testpool_txt)
+        self.testpoolfile_browse_button = tkinter.Button(self.testing_page,text="Browse",width=15,command=self.browse_testpool_txt)
         self.testpoolfile_browse_button.grid(row=0,column=2,padx=2,pady=4)
 
 
         tkinter.Label(self.testing_page, text="Testpool Folder:").grid(row=1, column=0, pady=2)
         self.testpoolFolder_input_bar = tkinter.Entry(self.testing_page, width=40)
         self.testpoolFolder_input_bar.grid(row=1, column=1, padx=2)
-        self.testpoolFolder_browse_button = tkinter.Button(self.testing_page,text="browse",width=15,command=self.browse_testpool_dir)
+        self.testpoolFolder_browse_button = tkinter.Button(self.testing_page,text="Browse",width=15,command=self.browse_testpool_dir)
         self.testpoolFolder_browse_button.grid(row=1,column=2,padx=2,pady=4)
 
         tkinter.Label(self.testing_page, text="No of Trial:").grid(row=2,column=0,pady=2)
@@ -134,22 +134,15 @@ class Tester_GUI:
 
         self.test_page_report.heading("1", text="File")
         self.test_page_report.heading("2", text="Error Message")
-        self.start_testing_button=tkinter.Button(self.testing_page,text="start Testing",width=15,command=self.testing_function)
+        self.start_testing_button=tkinter.Button(self.testing_page,text="Start Testing",width=15,command=self.testing_function)
         self.start_testing_button.grid(row=4,column=0,padx=2,pady=4,columnspan=4)
 
+        self.stringvar = tkinter.StringVar()
+        self.stringvar.set('0/0')
         self.progress_var_testing = tkinter.DoubleVar()
-        self.style = ttk.Style(self.root)
-        self.style.layout('text.Horizontal.TProgressbar',
-                     [('Horizontal.Progressbar.trough',
-                       {'children': [('Horizontal.Progressbar.pbar',
-                                      {'side': 'left', 'sticky': 'ns'})],
-                        'sticky': 'nswe'}),
-                      ('Horizontal.Progressbar.label', {'sticky': ''})])
-        # # , lightcolor=None, bordercolo=None, darkcolor=None
-        self.style.configure('text.Horizontal.TProgressbar', text='Trial 0/0')
-
-        self.progressbar_testing = ttk.Progressbar(self.testing_page, style='text.Horizontal.TProgressbar', length=500, variable=self.progress_var_testing,value=0)
+        self.progressbar_testing = ttk.Progressbar(self.testing_page, length=400, variable=self.progress_var_testing)
         self.progressbar_testing.grid(row=5,column=0,padx=2,pady=4,columnspan=4)
+        self.progressbar_text = tkinter.Label(self.testing_page, textvariable=self.stringvar).grid(row=5,column=2,padx=2,pady=4,columnspan=4)
 
 
     def start_download(self):
@@ -197,7 +190,7 @@ class Tester_GUI:
             self.testpoolfile_browse_button["state"] = "disabled"
             self.testpoolFolder_browse_button["state"] = "disabled"
             self.start_testing_button["state"] = "disabled"
-            ART_Algo.ART_algo(int(self.No_of_test_trial.get()),self.selected_testpool_txt,self.selected_testpool_folder,self.root,self.test_page_report, self.progress_var_testing, self.progressbar_testing, self.style)
+            ART_Algo.ART_algo(int(self.No_of_test_trial.get()),self.selected_testpool_txt,self.selected_testpool_folder,self.root,self.test_page_report, self.progress_var_testing, self.progressbar_testing, self.stringvar)
             self.testpoolfile_browse_button["state"] = "active"
             self.testpoolFolder_browse_button["state"] = "active"
             self.start_testing_button["state"] = "active"

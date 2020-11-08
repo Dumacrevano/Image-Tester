@@ -8,7 +8,7 @@ from DataReader import *
 import PIL
 import time
 
-def ART_algo(trialno,filename,testpoolfolder,root,treev, variable, bar, style):
+def ART_algo(trialno,filename,testpoolfolder,root,treev, variable, bar, stringvar):
     # data pool creation
     data_pool, length = datareader(filename)
 
@@ -102,8 +102,7 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev, variable, bar, style):
         tested_pictures.append(potential_candidate)
         trial_num = trial_num + 1
         variable.set(trial_num)
-        bar['value'] = trial_num
-        style.configure('text.Horizontal.TProgressbar',text='Trial No: {0}/{1}'.format(trial_num, trials))
+        stringvar.set(str(trial_num)+"/"+str(trials))
         time.sleep(0.02)
         root.update_idletasks()
         filename = potential_candidate["Name"] + potential_candidate["Type"]
