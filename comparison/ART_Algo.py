@@ -16,8 +16,7 @@ def ART_algo(textfile, testpoolfolder):
     # initialize variables
     tested_pictures = []
     trials = 10
-    trial_num = 1
-    tested_pictures.append(data_pool[0])
+    trial_num = 0
     number_of_candidate = 3
     candidates = []
     sample_errors = []
@@ -42,7 +41,7 @@ def ART_algo(textfile, testpoolfolder):
         os.mkdir(errorfolder)
 
     while trial_num < trials:
-        print("Trial " + str(trial_num + 1) + ":")
+        print("ART Trial " + str(trial_num + 1) + ":")
         if (trial_num == 0):
             potential_candidate = data_pool[numpy.random.randint(0, length)]
 
@@ -145,7 +144,7 @@ def ART_algo(textfile, testpoolfolder):
                 del img
                 output_path = '/'.join(output_filename.split('/')[-1:])
                 # move file to results folder
-                os.rename(output_filename, parent_path + output_path.replace(folder_path,
+                os.rename(output_filename, parent_path + "comparison/" + output_path.replace(folder_path,
                                                                              resultfolder))  # !!!!! folder name should be LOWERED!!!!
                 if (result_format.lower() == "jpeg"):
                     result_format = "jpg"
@@ -174,7 +173,7 @@ def ART_algo(textfile, testpoolfolder):
         except Exception as e:  # catches other errors
             print(e)
             if os.path.isfile(output_filename):
-                os.rename(output_filename, parent_path + output_path.replace(folder_path,
+                os.rename(output_filename, parent_path + "comparison/" + output_path.replace(folder_path,
                                                                              errorfolder))  # place error file into error folder
             print("Error in trial:" + str(trial_num))
             if filename not in sample_errors:
@@ -187,4 +186,3 @@ def ART_algo(textfile, testpoolfolder):
     print("first error found at trial:" + str(first_error))
     return first_error, len(sample_errors)
 
-ART_algo( "D:\Education\Semester 6\Software Engineering\SE-Project\Image-Tester/testpool.txt", "D:\Education\Semester 6\Software Engineering\SE-Project\Image-Tester/Testpool")

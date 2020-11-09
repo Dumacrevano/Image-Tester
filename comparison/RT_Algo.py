@@ -37,7 +37,7 @@ def RT_algo(filename,testpoolfolder):
         os.mkdir(errorfolder)
 
     while trial_num < trials:
-        print("Trial " + str(trial_num + 1) + ":")
+        print("RT Trial " + str(trial_num + 1) + ":")
 
         potential_candidate = data_pool[numpy.random.randint(0, length)]
 
@@ -87,7 +87,7 @@ def RT_algo(filename,testpoolfolder):
                 del img
                 output_path = '/'.join(output_filename.split('/')[-1:])
                 # move file to results folder
-                os.rename(output_filename, parent_path + output_path.replace(folder_path,
+                os.rename(output_filename, parent_path + "comparison/" + output_path.replace(folder_path,
                                                                              resultfolder))  # !!!!! folder name should be LOWERED!!!!
                 if (result_format.lower() == "jpeg"):
                     result_format = "jpg"
@@ -116,7 +116,7 @@ def RT_algo(filename,testpoolfolder):
         except Exception as e:  # catches other errors
             print(e)
             if os.path.isfile(output_filename):
-                os.rename(output_filename, parent_path + output_path.replace(folder_path,
+                os.rename(output_filename, parent_path + "comparison/" + output_path.replace(folder_path,
                                                                              errorfolder))  # place error file into error folder
             print("Error in trial:" + str(trial_num))
             if filename not in sample_errors:
@@ -130,4 +130,3 @@ def RT_algo(filename,testpoolfolder):
     return first_error, len(sample_errors)
 
 
-RT_algo("D:\Education\Semester 6\Software Engineering\SE-Project\Image-Tester/testpool.txt", "testpool")
