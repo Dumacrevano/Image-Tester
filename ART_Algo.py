@@ -16,8 +16,7 @@ def ART_algo(trialno,textfile,testpoolfolder,root,treev, variable, bar, stringva
     tested_pictures = []
     trials = trialno
     bar["maximum"] = trials
-    trial_num = 1
-    tested_pictures.append(data_pool[0])
+    trial_num = 0
     number_of_candidate = 3
     candidates = []
     sample_errors = []
@@ -160,10 +159,11 @@ def ART_algo(trialno,textfile,testpoolfolder,root,treev, variable, bar, stringva
                 if (result_format.lower() != file_formats[i]):
                     if filename not in sample_errors:
                         sample_errors.append(filename)
+                        treev.insert("", 'end', text="L1", values=(filename, "Conversion Error from" + potential_candidate['Type'] + " to " + result_format))
+                        root.update_idletasks()
                     if (first_error == math.inf):
                         first_error = trial_num
                     print("Error")
-                    treev.insert("", 'end', text="L1", values=(filename, "Conversion Error from"+potential_candidate['Type']+" to "+result_format))
 
         except PermissionError:
             continue
@@ -173,10 +173,11 @@ def ART_algo(trialno,textfile,testpoolfolder,root,treev, variable, bar, stringva
             print(e)
             if filename not in sample_errors:
                 sample_errors.append(filename)
+                treev.insert("", 'end', text="L1", values=(filename, e))
+                root.update_idletasks()
             if (first_error == math.inf):
                 first_error = trial_num
-            treev.insert("", 'end', text="L1",values=(filename, e))
-            root.update_idletasks()
+
         except Exception as e:  # catches other errors
             print(e)
             if os.path.isfile(output_filename):
@@ -184,11 +185,13 @@ def ART_algo(trialno,textfile,testpoolfolder,root,treev, variable, bar, stringva
             print("Error in trial:" + str(trial_num))
             if filename not in sample_errors:
                 sample_errors.append(filename)
+                treev.insert("", 'end', text="L1",
+                             values=(filename, e))
+                root.update_idletasks()
             if (first_error == math.inf):
                 first_error = trial_num
-            treev.insert("", 'end', text="L1",
-                         values=(filename, e))
-            root.update_idletasks()
+
+
 
 
     print("Possible errors for:")
