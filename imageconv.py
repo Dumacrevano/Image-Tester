@@ -8,29 +8,28 @@ if(len(sys.argv) > 1):
 	file_format = sys.argv[2]
 else:
 	# file = input("Please input file name: ")
-	file = "TestpoolOriginal\image24.svg"
+	file = "Test/image57.png"
 	# file_format = input("Please input file type to save as: ")
-	file_format = "jpg"
+	file_format = "gif"
 img = Image.open(file)
 image_format = img.format.lower()
 
-# print(image_format)
-# print(file.replace(image_format.lower(), file_format.lower()))
 if image_format.lower() == "jpeg":
 	image_format = "jpg"
 elif image_format.lower() == "ppm":
 	image_format = "pgm"
+if "jpeg" in file:
+	image_format= "jpeg"
 try:
 	if(image_format.lower() == "pgm"):
-		img.save(file.lower().replace(image_format.lower(), file_format.lower()))
+		img.save(file.replace(image_format.lower(), file_format.lower()))
 
 	elif img.mode != 'RGB':
 		rgb_img = img.convert('RGB')
-		rgb_img.save(file.lower().replace(image_format.lower(), file_format.lower()))
+		rgb_img.save(file.replace(image_format.lower(), file_format.lower()))
 
 	else:
-		img.save(file.lower().replace(image_format.lower(), file_format.lower()))
-
+		img.save(file.replace(image_format.lower(), file_format.lower()))
 except Exception as e:
 	print(e)
 

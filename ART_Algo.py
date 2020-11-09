@@ -8,9 +8,9 @@ from DataReader import *
 import PIL
 import time
 
-def ART_algo(trialno,filename,testpoolfolder,root,treev, variable, bar, stringvar):
+def ART_algo(trialno,textfile,testpoolfolder,root,treev, variable, bar, stringvar):
     # data pool creation
-    data_pool, length = datareader(filename)
+    data_pool, length = datareader(textfile)
 
     # initialize variables
     tested_pictures = []
@@ -105,8 +105,10 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev, variable, bar, stringva
         stringvar.set(str(trial_num)+"/"+str(trials))
         time.sleep(0.02)
         root.update_idletasks()
-        filename = potential_candidate["Name"] + potential_candidate["Type"]
 
+        filename = potential_candidate["Name"] + potential_candidate["Type"].lower()
+        folder_path = '/'.join(testpoolfolder.split('/')[-1:])
+        parent_path = os.getcwd()+"/"
         try:
             # set formats list
             file_formats = ["png", "gif", "jpg", "bmp", "webp", "ico", "pgm"]
@@ -120,6 +122,9 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev, variable, bar, stringva
                 cur_format = file_formats.pop(1)
 
             elif(potential_candidate["Type"].lower() == ".jpg"):
+                cur_format = file_formats.pop(2)
+
+            elif (potential_candidate["Type"].lower() == ".jpeg"):
                 cur_format = file_formats.pop(2)
 
             elif(potential_candidate["Type"].lower() == ".bmp"):
@@ -137,15 +142,15 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev, variable, bar, stringva
             # convert the file to the other formats
             for i in range(len(file_formats)):
                 os.system("python " + program_name + " " + "\"" + filename + "\" " + file_formats[i])
-                output_filename = filename.lower().replace(cur_format, file_formats[i])
+                output_filename = filename.replace(cur_format, file_formats[i])
                 img = Image.open(output_filename)
                 result_format = img.format
                 # print("Output file "+ str(i) + " format is: " + result_format)
                 del img
-
+                output_path = '/'.join(output_filename.split('/')[-1:])
                 # move file to results folder
-                os.rename(output_filename, output_filename.replace(testpoolfolder.lower(), resultfolder))  # !!!!! folder name should be LOWERED!!!!
 
+                os.rename(output_filename, parent_path+output_path.replace(folder_path, resultfolder))  # !!!!! folder name should be LOWERED!!!!
                 if (result_format.lower() == "jpeg"):
                    result_format = "jpg"
 
@@ -173,8 +178,7 @@ def ART_algo(trialno,filename,testpoolfolder,root,treev, variable, bar, stringva
         except Exception as e:  # catches other errors
             print(e)
             if os.path.isfile(output_filename):
-                os.rename(output_filename, output_filename.replace(testpoolfolder.lower(),
-                                                                   errorfolder))  # place error file into error folder
+                os.rename(output_filename, parent_path+output_path.replace(folder_path, errorfolder)) # place error file into error folder
             print("Error in trial:" + str(trial_num))
             sample_errors.append(filename)
             if (first_error == math.inf):
