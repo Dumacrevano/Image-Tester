@@ -109,6 +109,7 @@ def ART_algo(trialno,textfile,testpoolfolder,root,treev, variable, bar, stringva
         filename = potential_candidate["Name"] + potential_candidate["Type"].lower()
         folder_path = '/'.join(testpoolfolder.split('/')[-1:])
         parent_path = os.getcwd()+"/"
+
         try:
             # set formats list
             file_formats = ["png", "gif", "jpg", "bmp", "webp", "ico", "pgm"]
@@ -149,7 +150,6 @@ def ART_algo(trialno,textfile,testpoolfolder,root,treev, variable, bar, stringva
                 del img
                 output_path = '/'.join(output_filename.split('/')[-1:])
                 # move file to results folder
-
                 os.rename(output_filename, parent_path+output_path.replace(folder_path, resultfolder))  # !!!!! folder name should be LOWERED!!!!
                 if (result_format.lower() == "jpeg"):
                    result_format = "jpg"
@@ -158,7 +158,8 @@ def ART_algo(trialno,textfile,testpoolfolder,root,treev, variable, bar, stringva
                    result_format = "pgm"
 
                 if (result_format.lower() != file_formats[i]):
-                    sample_errors.append(filename)
+                    if filename not in sample_errors:
+                        sample_errors.append(filename)
                     if (first_error == math.inf):
                         first_error = trial_num
                     print("Error")
@@ -170,7 +171,8 @@ def ART_algo(trialno,textfile,testpoolfolder,root,treev, variable, bar, stringva
             continue
         except FileNotFoundError as e:
             print(e)
-            sample_errors.append(filename)
+            if filename not in sample_errors:
+                sample_errors.append(filename)
             if (first_error == math.inf):
                 first_error = trial_num
             treev.insert("", 'end', text="L1",values=(filename, e))
@@ -180,7 +182,8 @@ def ART_algo(trialno,textfile,testpoolfolder,root,treev, variable, bar, stringva
             if os.path.isfile(output_filename):
                 os.rename(output_filename, parent_path+output_path.replace(folder_path, errorfolder)) # place error file into error folder
             print("Error in trial:" + str(trial_num))
-            sample_errors.append(filename)
+            if filename not in sample_errors:
+                sample_errors.append(filename)
             if (first_error == math.inf):
                 first_error = trial_num
             treev.insert("", 'end', text="L1",

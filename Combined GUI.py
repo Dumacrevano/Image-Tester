@@ -142,7 +142,7 @@ class Tester_GUI:
         self.progress_var_testing = tkinter.DoubleVar()
         self.progressbar_testing = ttk.Progressbar(self.testing_page, length=400, variable=self.progress_var_testing)
         self.progressbar_testing.grid(row=5,column=0,padx=2,pady=4,columnspan=4)
-        self.progressbar_text = tkinter.Label(self.testing_page, textvariable=self.stringvar).grid(row=5,column=2,padx=2,pady=4,columnspan=4)
+        self.progressbar_text = tkinter.Label(self.testing_page, textvariable=self.stringvar, anchor='e', justify='right').grid(row=5,column=2, sticky = "E")
 
 
     def start_download(self):
