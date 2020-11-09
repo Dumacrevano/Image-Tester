@@ -51,8 +51,9 @@ def downloadimages(file_type,words,response,directory):
 # Driver Code
 def start_download(testpool,x):
     testpool = testpool
-    randomizer=random.randint(0,12)
-    if randomizer >=10:
+    randomizer=random.randint(0,100)
+
+    if randomizer >=15:
         corpus_link = "https://www.randomlists.com/data/words.json"
         response = urllib.request.urlopen(corpus_link)
         json_data = response.read().decode()
