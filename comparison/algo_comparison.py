@@ -17,7 +17,7 @@ def algo_comparison(trial_no,filename,testpoolfolder):
 	draw = 0
 
 	for i in range (0,x):
-		print("LOOP:", i)
+		print("Loop:", i)
 		RT_error, temp = RT_algo(filename,testpoolfolder)
 		RT_sum_error += temp
 

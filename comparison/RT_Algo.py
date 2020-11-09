@@ -87,7 +87,7 @@ def RT_algo(filename,testpoolfolder):
                 del img
                 output_path = '/'.join(output_filename.split('/')[-1:])
                 # move file to results folder
-                os.rename(output_filename, parent_path + "comparison/" + output_path.replace(folder_path,
+                shutil.move(output_filename, parent_path + "comparison/" + output_path.replace(folder_path,
                                                                              resultfolder))  # !!!!! folder name should be LOWERED!!!!
                 if (result_format.lower() == "jpeg"):
                     result_format = "jpg"
@@ -116,8 +116,12 @@ def RT_algo(filename,testpoolfolder):
         except Exception as e:  # catches other errors
             print(e)
             if os.path.isfile(output_filename):
-                os.rename(output_filename, parent_path + "comparison/" + output_path.replace(folder_path,
+                try:
+                    shutil.move(output_filename, parent_path + "comparison/" + output_path.replace(folder_path,
                                                                              errorfolder))  # place error file into error folder
+                except Exception as e:
+                    continue
+
             print("Error in trial:" + str(trial_num))
             if filename not in sample_errors:
                 sample_errors.append(filename)
