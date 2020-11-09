@@ -147,7 +147,7 @@ class Tester_GUI:
 
     def start_download(self):
         # create thread function for download
-        self.progressbar_download_image["maximum"]=int(self.No_of_generated_image.get())
+        self.progressbar_download_image["maximum"]=int(self.No_of_generated_image.get()) - 1
         def thread():
             self.browse_button["state"]="disabled"
             self.start_download_button["state"]="disabled"
@@ -160,6 +160,7 @@ class Tester_GUI:
             while(quota_flag):
                 current_files = os.listdir(self.selected_download_folder)
                 number_of_files = len(current_files)
+
                 if(number_of_files < int(self.No_of_generated_image.get())):
                     ImgDownloader.start_download(self.selected_download_folder,x)
                     self.progress_var_download_image.set(number_of_files)
