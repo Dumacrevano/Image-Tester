@@ -156,11 +156,12 @@ class Tester_GUI:
             if not os.path.exists(self.selected_download_folder):
                 os.mkdir(self.selected_download_folder)
             quota_flag = True
+            x=0#counter for image generation
             while(quota_flag):
                 current_files = os.listdir(self.selected_download_folder)
                 number_of_files = len(current_files)
                 if(number_of_files < int(self.No_of_generated_image.get())):
-                    ImgDownloader.start_download(self.selected_download_folder)
+                    ImgDownloader.start_download(self.selected_download_folder,x)
                     self.progress_var_download_image.set(number_of_files)
                     time.sleep(0.02)
                     self.root.update_idletasks()

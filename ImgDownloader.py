@@ -49,11 +49,10 @@ def downloadimages(file_type,words,response,directory):
 
 
 # Driver Code
-def start_download(testpool):
+def start_download(testpool,x):
     testpool = testpool
-
     randomizer=random.randint(0,12)
-    if randomizer >=4:
+    if randomizer >=10:
         corpus_link = "https://www.randomlists.com/data/words.json"
         response = urllib.request.urlopen(corpus_link)
         json_data = response.read().decode()
@@ -77,6 +76,14 @@ def start_download(testpool):
 
         downloadimages(type,words,response,testpool)
     else:
+        fromfolder = "Testing Seed"
+        tofolder = testpool
+        file = random.choice(os.listdir(fromfolder))
+        filepath = fromfolder + '/' + file
+        file_name, file_extension = os.path.splitext(file)
+        shutil.copy(filepath, tofolder + "/" + file_name + str(x+1) + file_extension)
+        print(filepath)
         print("inserted from home")
+        x += 1
     # print()
 
