@@ -151,14 +151,21 @@ class Tester_GUI:
         def thread():
             self.browse_button["state"]="disabled"
             self.start_download_button["state"]="disabled"
-            testpool = self.selected_download_folder
-            if (os.path.exists(testpool)):
-                shutil.rmtree(testpool)
-            for i in range(1, int(self.No_of_generated_image.get())+1):
-                ImgDownloader.start_download(self.selected_download_folder)
-                self.progress_var_download_image.set(i)
-                time.sleep(0.02)
-                self.root.update_idletasks()
+            if (os.path.exists(self.selected_download_folder)):
+                shutil.rmtree(self.selected_download_folder)
+            if not os.path.exists(self.selected_download_folder):
+                os.mkdir(self.selected_download_folder)
+            quota_flag = True
+            while(quota_flag):
+                current_files = os.listdir(self.selected_download_folder)
+                number_of_files = len(current_files)
+                if(number_of_files < int(self.No_of_generated_image.get())):
+                    ImgDownloader.start_download(self.selected_download_folder)
+                    self.progress_var_download_image.set(number_of_files)
+                    time.sleep(0.02)
+                    self.root.update_idletasks()
+                else:
+                    quota_flag = False
             AutomatedRename.rename_tool(self.selected_download_folder)
             print("Download completed")
             self.browse_button["state"]="active"
